@@ -4,6 +4,7 @@ export const colors = {
     light: "#F2F2F0",
     medium: "#D9CFC5",
     accent: "#A79589",
+    accentOp: "#A7958999",
     brown: "#BCAD90",
 }
 

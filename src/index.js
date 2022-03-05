@@ -9,9 +9,18 @@ import {
   faCoffee, 
   faCartShopping, 
   faMagnifyingGlass,
+  faChevronLeft,
+  faChevronRight,  
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add( faCheckSquare, faCoffee, faCartShopping, faMagnifyingGlass)
+library.add( 
+  faCheckSquare, 
+  faCoffee, 
+  faCartShopping, 
+  faMagnifyingGlass, 
+  faChevronLeft, 
+  faChevronRight
+)
 
 ReactDOM.render(
   <React.StrictMode>
