@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 import {colors} from '../../utils/colors'
 
-export const HeaderContainer = styled.div`
+export const HeaderContainer = styled.header`
     font-size: 1.2rem;
     display: flex;
     width: 100%;
     height: 4rem;
     justify-content: space-between;
     align-items: center;
+   
 
     @media (max-width: 380px){
         align-items: flex-start;

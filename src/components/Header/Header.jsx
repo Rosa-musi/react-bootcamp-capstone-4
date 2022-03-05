@@ -24,13 +24,21 @@ const Header = () => {
             <SearchDiv>
                 <FontAwesomeIcon 
                   icon="fa-solid fa-magnifying-glass" 
-                  style={{color: colors.textLogo, marginRight: ".3rem"}} 
+                  style={{
+                    color: colors.textLogo, 
+                    marginRight: ".3rem", 
+                    cursor: "pointer",
+                  }} 
                 />
                 <SearchInput type="text" />
             </SearchDiv>
             <FontAwesomeIcon 
               icon="shopping-cart" 
-              style={{color: colors.textLogo, marginLeft: "1rem"}}
+              style={{
+                color: colors.textLogo, 
+                marginLeft: "1rem",
+                cursor: "pointer",
+              }}
             />
         </HeaderSearchDiv>
     </HeaderContainer>
