@@ -8,6 +8,7 @@ export const SliderContainer = styled.div`
     width: 100%;
     height: fit-content;
     margin-top: 3rem;
+
 `
 export const ImgBanerContainer = styled.div`
     position: relative;
@@ -15,6 +16,9 @@ export const ImgBanerContainer = styled.div`
     flex-direction: row;
     height: fit-content;
     width: 60%;
+    @media (max-width: 380px){
+        width: 100%;
+    }
 `
 export const CarouselImg = styled.img`
     
@@ -27,6 +31,7 @@ export const TextDiv = styled.div`
     flex-direction: column;
     align-self: flex-end;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: auto;
     background-color: ${colors.accentOp};
@@ -37,7 +42,14 @@ export const TextDiv = styled.div`
 export const Text = styled.p`
     color: white;
     font-weight: ${props => props.title && "bolder"};
-    margin: 1REM;
+    margin: 1rem;
 
+    @media (max-width: 768px){
+        display: ${props => props.description && "none"}
+    }
+    @media (max-width: 380px){
+        width: 100%;
+        font-size: .9rem;
+    }
 `
 

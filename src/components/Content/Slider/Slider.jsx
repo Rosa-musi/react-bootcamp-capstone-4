@@ -81,7 +81,7 @@ const Slider = () => {
                 />
                 <TextDiv>
                     <Text title>{selectedImage.title}</Text>
-                    <Text>{selectedImage.description}</Text>
+                    <Text description>{selectedImage.description}</Text>
                 </TextDiv>
                 
             </ImgBanerContainer>
