@@ -8,11 +8,13 @@ export const HeaderContainer = styled.header`
     height: 4rem;
     justify-content: space-between;
     align-items: center;
-   
+    margin-top: .8rem;
+    margin-bottom: .8rem;
 
     @media (max-width: 380px){
         align-items: flex-start;
-        
+        margin-top: .5rem;
+        margin-bottom: 0;
     }
 `
 export const HeaderLogoDiv = styled.div`

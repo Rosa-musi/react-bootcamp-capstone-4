@@ -7,7 +7,7 @@ export const FooterContainer = styled.footer`
     align-items: center;
     margin-top: auto;
     height: 5rem;
-    background-color: ${colors.light};
+    background-color: ${colors.medium};
 `
 
 export const FooterText = styled.p`

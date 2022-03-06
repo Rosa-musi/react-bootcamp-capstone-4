@@ -80,7 +80,7 @@ const Slider = () => {
                     alt="imágen" 
                 />
                 <TextDiv>
-                    <Text title>{selectedImage.title}</Text>
+                    <Text titl>{selectedImage.title}</Text>
                     <Text description>{selectedImage.description}</Text>
                 </TextDiv>
                 
