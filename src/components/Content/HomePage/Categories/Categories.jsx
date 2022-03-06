@@ -3,9 +3,9 @@ import {
     CategoriesContainer,
     CategoriesTitle,
     CategoriesDiv,
-    CategorieDiv,
-    CategorieImg,
-    CategorieTitle,
+    CategoryDiv,
+    CategoryImg,
+    CategoryTitle,
 } from './styledCategories'
 import Data from '../../../../mocks/en-us/product-categories.json'
 
@@ -30,10 +30,10 @@ const Categories = () => {
         <CategoriesDiv>
             {categories.map(categorie => {
                 return(
-                    <CategorieDiv key={crypto.randomUUID()}>
-                        <CategorieImg src={categorie.image}/>
-                        <CategorieTitle>{categorie.title}</CategorieTitle> 
-                    </CategorieDiv>
+                    <CategoryDiv key={crypto.randomUUID()}>
+                        <CategoryImg src={categorie.image}/>
+                        <CategoryTitle>{categorie.title}</CategoryTitle> 
+                    </CategoryDiv>
                 )
             })}
         </CategoriesDiv>

@@ -33,7 +33,7 @@ export const CategoriesDiv = styled.div`
         width: 100%;
     }
 `
-export const CategorieDiv = styled.div`
+export const CategoryDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,12 +48,12 @@ export const CategorieDiv = styled.div`
         box-shadow: -4px 4px 5px 2px rgba(130,130,130,0.66); 
     }
 `
-export const CategorieImg = styled.img`
+export const CategoryImg = styled.img`
     width: 100%;
     border-radius: 1rem;
     opacity: .6;
 `
-export const CategorieTitle = styled.h3`
+export const CategoryTitle = styled.h3`
 position: absolute;
     width: 100%;
     font-size: 1.5rem;

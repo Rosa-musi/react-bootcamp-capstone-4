@@ -4,7 +4,7 @@ import Header from './components/Header/Header'
 import Content from './components/Content/Content'
 import Footer from './components/Footer/Footer'
 
-const MainContainer = styled.body`
+const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
