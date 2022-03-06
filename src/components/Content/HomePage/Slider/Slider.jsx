@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Data from '../../../mocks/en-us/featured-banners.json'
+import Data from '../../../../mocks/en-us/featured-banners.json'
 import {
     SliderContainer,
     CarouselImg,
@@ -8,7 +8,7 @@ import {
     Text,
 } from './styledSlider'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {colors} from '../../../utils/colors'
+import {colors} from '../../../../utils/colors'
 
 const Slider = () => {
     const banersData = []

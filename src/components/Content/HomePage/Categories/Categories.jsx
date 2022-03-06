@@ -7,7 +7,7 @@ import {
     CategorieImg,
     CategorieTitle,
 } from './styledCategories'
-import Data from '../../../mocks/en-us/product-categories.json'
+import Data from '../../../../mocks/en-us/product-categories.json'
 
 const Categories = () => {
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {colors} from '../../../utils/colors'
+import {colors} from '../../../../utils/colors'
 
 export const SliderContainer = styled.div`
     display: flex;
@@ -7,7 +7,8 @@ export const SliderContainer = styled.div`
     align-items: center;
     width: 100%;
     height: fit-content;
-    padding-top: 3rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
     background-color: ${colors.light};
     @media (max-width: 380px){
         margin-top: 1.5rem;
@@ -20,7 +21,7 @@ export const ImgBanerContainer = styled.div`
     flex-direction: row;
     height: fit-content;
     width: 50%;
-    @media (max-width: 380px){
+    @media (max-width: 768px){
         width: 100%;
     }
 `

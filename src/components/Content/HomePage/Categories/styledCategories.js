@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {colors} from '../../../utils/colors'
+import {colors} from '../../../../utils/colors'
 
 export const CategoriesContainer = styled.div`
     display: flex;
@@ -8,13 +8,12 @@ export const CategoriesContainer = styled.div`
     height: fit-content;
     justify-content: center;
     align-items: center;
-    padding-top: 2rem;
+    padding-top: 3rem;
     padding-bottom: 4rem;
-    background-color: ${colors.light};
+    
     @media (max-width: 380px){
         padding-top: 1rem;
     }
-   
 `
 export const CategoriesTitle = styled.h2`
     font-size: 1.8rem;
@@ -40,10 +39,13 @@ export const CategorieDiv = styled.div`
     align-items: center;
     width: 15rem;
     position: relative;
-    margin: .5rem;
+    margin: .8rem;
+    border-radius: 1rem;
     cursor: pointer;
+    box-shadow: -8px 10px 5px 2px rgba(130,130,130,0.66);
     @media (max-width: 380px){
         width: 6rem;
+        box-shadow: -4px 4px 5px 2px rgba(130,130,130,0.66); 
     }
 `
 export const CategorieImg = styled.img`
