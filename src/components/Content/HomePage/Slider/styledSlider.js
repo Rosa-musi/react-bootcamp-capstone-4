@@ -11,7 +11,7 @@ export const SliderContainer = styled.div`
     padding-bottom: 4rem;
     background-color: ${colors.light};
     @media (max-width: 380px){
-        margin-top: 1.5rem;
+        margin-top: .8rem;
     }
 
 `

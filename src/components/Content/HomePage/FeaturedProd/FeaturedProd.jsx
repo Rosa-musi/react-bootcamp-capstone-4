@@ -24,7 +24,7 @@ const FeaturedProd = () => {
     })
 
     const [featured, setFeatured] = useState(featuredData)
-    console.log(featured)
+ 
   return (
     <FeaturedContainer>
         <FeaturedTitle>Featured Products</FeaturedTitle>

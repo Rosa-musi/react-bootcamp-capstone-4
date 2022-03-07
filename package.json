@@ -55,6 +55,8 @@
       ],
       "no-param-reassign": "error",
       "react/self-closing-comp": "error",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
       "lines-between-class-members": [
         "error",
         "always",
@@ -79,6 +81,7 @@
     ]
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0"
+    "babel-eslint": "^10.1.0",
+    "eslint-plugin-react-hooks": "^4.3.0"
   }
 }

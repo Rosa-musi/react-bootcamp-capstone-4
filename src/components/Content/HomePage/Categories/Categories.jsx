@@ -23,7 +23,6 @@ const Categories = () => {
 
     const [categories, setCategories] = useState(categoriesData)
 
-    console.log(categories)
    return (
     <CategoriesContainer>
         <CategoriesTitle>Shop by categorie</CategoriesTitle>

@@ -9,11 +9,11 @@ export const HeaderContainer = styled.header`
     justify-content: space-between;
     align-items: center;
     margin-top: .8rem;
-    margin-bottom: .8rem;
+    margin-bottom: 1rem;
 
     @media (max-width: 380px){
         align-items: flex-start;
-        margin-top: .5rem;
+        margin-top: .2rem;
         margin-bottom: 0;
     }
 `
@@ -24,6 +24,7 @@ export const HeaderLogoDiv = styled.div`
     margin-left: 2.5rem;
     @media (max-width: 768px){
         margin-left: 1rem;
+        margin-bottom: 0;
     }
 
 `
@@ -34,7 +35,7 @@ export const HeaderLogo = styled.img`
 `
 
 export const LogoText = styled.h1`
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: .5rem;
     color: ${colors.textLogo};
     @media (max-width: 380px){
@@ -58,6 +59,6 @@ export const SearchDiv = styled.div`
 `
 export const SearchInput = styled.input`
     @media (max-width: 768px){
-        width: 8rem;
+        width: 7rem;
     }
 `
