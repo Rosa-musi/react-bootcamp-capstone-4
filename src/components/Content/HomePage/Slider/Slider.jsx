@@ -29,15 +29,6 @@ const Slider = () => {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [selectedImage, setSelectedImage] = useState(baners[0])
 
-/*     const selectNewImage = (index, images, next = true) => {
-        const condition = next ? selectedIndex < baners.length : selectedIndex > 0
-        const nextIndex = next ? 
-        (condition ? selectedIndex + 1 : 0) :
-        condition ? selectedIndex - 1 : baners.length -1
-        setSelectedImage(images[nextIndex])
-        selectedIndex(nextIndex)
-            
-    } */
 
     const previous = () => {
         const condition = selectedIndex > 0

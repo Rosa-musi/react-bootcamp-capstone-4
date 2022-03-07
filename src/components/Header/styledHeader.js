@@ -35,8 +35,9 @@ export const HeaderLogo = styled.img`
 `
 
 export const LogoText = styled.h1`
-    font-size: 1.8rem;
-    margin-bottom: .5rem;
+    font-family: 'Cookie', cursive;
+    font-size: 2.3rem;
+
     color: ${colors.textLogo};
     @media (max-width: 380px){
         display: none;

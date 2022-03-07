@@ -12,11 +12,11 @@ import Data from '../../../../mocks/en-us/product-categories.json'
 const Categories = () => {
 
     const categoriesData = []
-    Data.results.forEach(categorie => {
+    Data.results.forEach(category => {
         categoriesData.push({
-           title: categorie.data.name,
-           image: categorie.data.main_image.url,
-           slugs: categorie.data.slugs,
+           title: category.data.name,
+           image: category.data.main_image.url,
+           slugs: category.data.slugs,
         })
         
     })
@@ -25,13 +25,13 @@ const Categories = () => {
 
    return (
     <CategoriesContainer>
-        <CategoriesTitle>Shop by categorie</CategoriesTitle>
+        <CategoriesTitle>Shop by category</CategoriesTitle>
         <CategoriesDiv>
-            {categories.map(categorie => {
+            {categories.map(category => {
                 return(
                     <CategoryDiv key={crypto.randomUUID()}>
-                        <CategoryImg src={categorie.image}/>
-                        <CategoryTitle>{categorie.title}</CategoryTitle> 
+                        <CategoryImg src={category.image}/>
+                        <CategoryTitle>{category.title}</CategoryTitle> 
                     </CategoryDiv>
                 )
             })}

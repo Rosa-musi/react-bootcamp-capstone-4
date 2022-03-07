@@ -47,6 +47,7 @@ export const Text = styled.p`
     color: white;
     font-weight: ${props => props.titl && "bolder"};
     margin: 1rem;
+    font-size: ${props => props.description ? "1.1rem": "1.5rem"};
 
     @media (max-width: 768px){
         display: ${props => props.description && "none"}

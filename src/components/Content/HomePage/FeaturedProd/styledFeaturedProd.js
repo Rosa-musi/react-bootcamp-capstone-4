@@ -18,8 +18,12 @@ export const FeaturedTitle = styled.h2`
     font-size: 1.8rem;
     font-weight: bold;
     color: ${colors.text};
+    margin-top: 3rem;
+    margin-bottom: 2rem;
     @media (max-width: 380px){
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        margin-bottom: .5rem;
     }
 `
 
