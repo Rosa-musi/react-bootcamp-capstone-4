@@ -1,28 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
 import { useFeaturedBanners } from './utils/hooks/useFeaturedBanners';
+import styled from 'styled-components'
+import Header from './components/Header/Header'
+import Content from './components/Content/Content'
+import Footer from './components/Footer/Footer'
+import GlobalStyle from './globalStyles'
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`
 
 function App() {
-  const { data, isLoading } = useFeaturedBanners();
-  console.log(data, isLoading);
+  /* const { data, isLoading } = useFeaturedBanners();
+  console.log(data, isLoading); */
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <GlobalStyle/>
+       <MainContainer>
+      <Header/>
+      <Content/>
+      <Footer/>
+   </MainContainer>
+    </>
+
+
+    
   );
 }
 
