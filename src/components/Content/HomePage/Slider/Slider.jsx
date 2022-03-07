@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import Data from '../../../../mocks/en-us/featured-banners.json'
 import {
     SliderContainer,
@@ -37,12 +37,12 @@ const Slider = () => {
         setSelectedIndex(nextIndex)
     }
 
-    const next = () => {
+    const next = useCallback(() => {
         const condition = selectedIndex < baners.length -1
         const nextIndex = condition ? selectedIndex + 1 : 0
         setSelectedImage(baners[nextIndex])
         setSelectedIndex(nextIndex)
-    }
+    }, [baners, selectedIndex])
  
     useEffect(() => {
         const intervalo = setInterval(() => {
@@ -52,7 +52,7 @@ const Slider = () => {
 
         return () => clearInterval(intervalo)
 
-    }, [selectedImage, selectedIndex]);  
+    }, [selectedImage, selectedIndex, next]);  
 
     return (
         <SliderContainer>
