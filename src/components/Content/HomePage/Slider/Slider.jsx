@@ -10,20 +10,21 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {colors} from '../../../../utils/colors'
 
-const Slider = () => {
-    const banersData = []
-    Data.results.forEach(baner => {
-        let description = ""
-        baner.data.description.forEach(obj => {
-            description = obj.text
-        })
-        banersData.push({
-           title: baner.data.title,
-           image: baner.data.main_image.url,
-           description: description,
-        })
-        
+const banersData = []
+Data.results.forEach(baner => {
+    let description = ""
+    baner.data.description.forEach(obj => {
+        description = obj.text
     })
+    banersData.push({
+       title: baner.data.title,
+       image: baner.data.main_image.url,
+       description: description,
+    })
+    
+})
+
+const Slider = () => {
     
     const [baners, setBaners] = useState(banersData)
     const [selectedIndex, setSelectedIndex] = useState(0)
