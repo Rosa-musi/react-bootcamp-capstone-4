@@ -10,18 +10,18 @@ import {
 } from './styledFeaturedProd'
 import Data from '../../../../mocks/en-us/featured-products.json'
 
-const FeaturedProd = () => {
-
-    const featuredData = []
-    Data.results.forEach(featured => {
-        featuredData.push({
-           name: featured.data.name,
-           image: featured.data.mainimage.url,
-           category: featured.data.category.slug,
-           price: featured.data.price,
-        })
-        
+const featuredData = []
+Data.results.forEach(featured => {
+    featuredData.push({
+       name: featured.data.name,
+       image: featured.data.mainimage.url,
+       category: featured.data.category.slug,
+       price: featured.data.price,
     })
+    
+})
+
+const FeaturedProd = () => {
 
     const [featured, setFeatured] = useState(featuredData)
  
