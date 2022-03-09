@@ -50,7 +50,7 @@ const Slider = () => {
         }, 6000)
 
 
-        return () => clearInterval(intervalo)
+        return () => clearInterval(intervalo)  //to erase interval (unmount)
 
     }, [selectedImage, selectedIndex, next]);  
 

@@ -32,7 +32,7 @@ export const FeaturesDiv = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
-    width: 90%;
+    margin-bottom: 2.5rem;
     @media (max-width: 768px){
         width: 100%;
     }

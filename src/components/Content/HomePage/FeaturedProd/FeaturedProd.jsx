@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {
     FeaturedContainer,
     FeaturedTitle,
@@ -9,22 +9,28 @@ import {
     Text,
 } from './styledFeaturedProd'
 import Data from '../../../../mocks/en-us/featured-products.json'
+import Button from '../../../Common/Button/Button'
+import {renderContext} from '../../../../context/renderContext'
+
+const featuredData = []
+Data.results.forEach(featured => {
+    featuredData.push({
+       name: featured.data.name,
+       image: featured.data.mainimage.url,
+       category: featured.data.category.slug,
+       price: featured.data.price,
+    })
+    
+})
 
 const FeaturedProd = () => {
 
-    const featuredData = []
-    Data.results.forEach(featured => {
-        featuredData.push({
-           name: featured.data.name,
-           image: featured.data.mainimage.url,
-           category: featured.data.category.slug,
-           price: featured.data.price,
-        })
-        
-    })
-
     const [featured, setFeatured] = useState(featuredData)
+    const {renderProductList, setRenderProductList} = useContext(renderContext)
  
+    const handleButton = () => {
+        setRenderProductList(true)
+    }
   return (
     <FeaturedContainer>
         <FeaturedTitle>Featured Products</FeaturedTitle>
@@ -44,6 +50,7 @@ const FeaturedProd = () => {
                 })
             }
         </FeaturesDiv>
+        <Button onClick={handleButton}>View all products</Button>
     </FeaturedContainer>
   )
 }

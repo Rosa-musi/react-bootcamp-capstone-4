@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import logo from './Logo.png'
 import {
@@ -11,11 +11,19 @@ import {
   SearchDiv,
 } from './styledHeader'
 import {colors} from '../../utils/colors'
+import {renderContext} from '../../context/renderContext'
 
 const Header = () => {
+
+  const {renderProductList, setRenderProductList} = useContext(renderContext)
+
+  const handleHomePage = () => {
+    setRenderProductList(false)
+  }
+
   return (
     <HeaderContainer>
-        <HeaderLogoDiv>
+        <HeaderLogoDiv onClick={handleHomePage}>
             <HeaderLogo src={logo} alt="logo" />
             <LogoText>Homify</LogoText>
         </HeaderLogoDiv>

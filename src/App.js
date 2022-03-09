@@ -4,6 +4,7 @@ import Header from './components/Header/Header'
 import Content from './components/Content/Content'
 import Footer from './components/Footer/Footer'
 import GlobalStyle from './globalStyles'
+import { RenderProvider } from './context/renderContext';
 
 const MainContainer = styled.div`
   display: flex;
@@ -18,11 +19,13 @@ function App() {
   return (
     <>
     <GlobalStyle/>
-       <MainContainer>
-      <Header/>
-      <Content/>
-      <Footer/>
-   </MainContainer>
+      <RenderProvider>
+        <MainContainer>
+        <Header/>
+        <Content/>
+        <Footer/>
+        </MainContainer>
+      </RenderProvider>
     </>
 
 
