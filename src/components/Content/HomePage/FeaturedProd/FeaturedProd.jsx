@@ -10,6 +10,7 @@ import {
 } from './styledFeaturedProd'
 import Data from '../../../../mocks/en-us/featured-products.json'
 import Button from '../../../Common/Button/Button'
+import Card from '../../../Common/Card/Card'
 import {renderContext} from '../../../../context/renderContext'
 
 const featuredData = []
@@ -20,7 +21,6 @@ Data.results.forEach(featured => {
        category: featured.data.category.slug,
        price: featured.data.price,
     })
-    
 })
 
 const FeaturedProd = () => {
@@ -38,14 +38,7 @@ const FeaturedProd = () => {
             {
                 featured.map(product => {
                     return (
-                        <FeaturedDiv key={crypto.randomUUID()}>
-                            <FeaturedImg src={product.image} alt={product.name}/>
-                            <FeaturedTextDiv>
-                                <Text titl>{product.name}</Text> 
-                                <Text>{product.category}</Text>
-                                <Text>${product.price}</Text> 
-                            </FeaturedTextDiv>
-                        </FeaturedDiv>
+                        <Card key={crypto.randomUUID()} {...product}/>
                     )
                 })
             }
