@@ -38,7 +38,17 @@ export const ProductsDiv = styled.div`
     flex-wrap: wrap;
     flex-direction: row;
     margin-bottom: 2.5rem;
+    width: 100%;
     @media (max-width: 768px){
         width: 100%;
     }
 `
+
+export const PaginationDiv = styled.div`
+    display: flex;
+    width: 95%;
+    height: auto;
+    margin: 1rem;
+    justify-content: space-between;
+`
+

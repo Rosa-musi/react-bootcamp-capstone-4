@@ -45,13 +45,23 @@ export const ProdListTitle = styled.h2`
 
 `
 
+export const CheckClass = styled.input`
+        &:checked{
+        background-color: red;
+    }
+`
+
+
+
 export const Text = styled.p.attrs(props => ({
     className: props.className,
 }))`
 
-    &.true{
-        background-color: red;
-    }
+     &.true{
+        border: 1px solid ${colors.accent};
+        border-radius: .5rem;
+        width: fit-content;
+    } 
 
     color: ${colors.text};
     margin: .4rem 1rem;
@@ -69,5 +79,7 @@ export const Text = styled.p.attrs(props => ({
         padding: .3rem;
     }
 
-`
+` 
+
+
 

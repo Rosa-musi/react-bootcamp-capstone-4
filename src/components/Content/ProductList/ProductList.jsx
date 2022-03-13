@@ -5,9 +5,12 @@ import {
     ListDiv,
     ProdListTitle,
     ProductsDiv,
+    PaginationDiv
 } from './styledProductList'
 import Card from '../../Common/Card/Card'
 import { renderContext } from '../../../context/renderContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {colors} from '../../../utils/colors'
 
 const ProductList = () => {
 
@@ -28,6 +31,26 @@ const ProductList = () => {
               })
               }
             </ProductsDiv>
+            <PaginationDiv>
+              <FontAwesomeIcon 
+                  className=''
+                  icon="fa-solid fa-chevron-left" 
+                  style={{
+                      cursor: "pointer",
+                      fontSize: "3rem",
+                      color: colors.textLogo,
+                    }} 
+              />
+              <FontAwesomeIcon 
+                
+                icon="fa-solid fa-chevron-right" 
+                style={{
+                    cursor: "pointer",
+                    fontSize: "3rem",
+                    color: colors.textLogo,
+                  }} 
+              />
+            </PaginationDiv>
         </ListDiv>
     </ProdListContainer>
   )
