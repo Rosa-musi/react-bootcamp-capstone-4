@@ -14,7 +14,7 @@ import {colors} from '../../../utils/colors'
 
 const ProductList = () => {
 
-  const {filters, setFilters, products, newProducts} = useContext(renderContext);
+  const {newProducts} = useContext(renderContext);
 
   return (
     <ProdListContainer>
@@ -23,12 +23,12 @@ const ProductList = () => {
             <ProdListTitle>Products List</ProdListTitle>
             <ProductsDiv>
               {newProducts.length === 0 ? 
-              <ProdListTitle>There are no products in those categories</ProdListTitle> :
-              newProducts.map(product => {
-                return(
-                  <Card key={crypto.randomUUID()} {...product}/>
-                )
-              })
+                <ProdListTitle>There are no products in those categories</ProdListTitle> :
+                newProducts.map(product => {
+                  return(
+                    <Card key={crypto.randomUUID()} {...product}/>
+                  )
+                })
               }
             </ProductsDiv>
             <PaginationDiv>

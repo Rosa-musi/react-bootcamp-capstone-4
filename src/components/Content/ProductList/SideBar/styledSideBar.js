@@ -61,6 +61,8 @@ export const Text = styled.p.attrs(props => ({
         border: 1px solid ${colors.accent};
         border-radius: .5rem;
         width: fit-content;
+        background-color: ${colors.accent};
+        color: white;
     } 
 
     color: ${colors.text};

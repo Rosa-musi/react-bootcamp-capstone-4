@@ -15,7 +15,7 @@ Data.results.forEach(category => {
        title: category.data.name,
        image: category.data.main_image.url,
        slugs: category.slugs,
-       selected: "false",
+       selected: false,
     })
     
 })
@@ -24,9 +24,7 @@ const SideBar = () => {
 
 
   const [categories, setCategories] = useState(categoriesData)
-  const [selected, setSelected] = useState("false")
-  const [selectedStyles, setSelectedStyles] = useState({})
-  const {filters, setFilters, setProducts, products} = useContext(renderContext)
+  const {filters, setFilters} = useContext(renderContext)
 
  
 
@@ -38,15 +36,16 @@ const SideBar = () => {
       setFilters ([...filters, category.slugs[0]])
     }
 
-    //cómo cambiar el valor del objeto
-    /* category.selected === "false" ? setCategories([...categories, {category..., category.selected: "true"}]) : 
-    setCategories([...categories, {selected: "false"}]) */
-  
+
+  const newCategories = categories
+    newCategories.forEach(cat => {
+        if (cat.title === category.title){
+          cat.selected ?  cat.selected = false : cat.selected = true
+        }
+    }) 
+    setCategories(newCategories)  
   }
-  
-  console.log(filters)
-  console.log(products)
-  console.log(categories)
+
 
 
   return (
@@ -54,7 +53,7 @@ const SideBar = () => {
       <SideBarContainer>
         <ProdListTitle>Categories</ProdListTitle>
         {categories.map(category => {
-          return <Text className={category.selected} onClick={() =>handleSelected(category)} key={crypto.randomUUID()}>{category.title}</Text>
+          return <Text className={category.selected ? "true" : "false"} onClick={() =>handleSelected(category)} key={crypto.randomUUID()}>{category.title}</Text>
         })}
     </SideBarContainer>
     </SideBarWrapper>
