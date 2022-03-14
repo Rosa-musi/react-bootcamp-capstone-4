@@ -40,7 +40,7 @@ const SideBar = () => {
   const newCategories = categories
     newCategories.forEach(cat => {
         if (cat.title === category.title){
-          cat.selected ?  cat.selected = false : cat.selected = true
+          cat.selected = !cat.selected
         }
     }) 
     setCategories(newCategories)  
