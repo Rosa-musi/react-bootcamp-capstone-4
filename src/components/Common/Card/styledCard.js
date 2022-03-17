@@ -11,18 +11,20 @@ width: 15rem;
 height: fit-content;
 margin: 1rem;
 border-radius: 1rem;
-cursor: pointer;
+padding-bottom: 3rem;
 background-color: white;
 @media (max-width: 380px){
     width: 12rem;
     box-shadow: -4px 4px 5px 2px rgba(130,130,130,0.66); 
     flex-direction: row;
     width: 17.5rem;
+    padding-bottom: 1rem;
 }
 `
 export const CardImg = styled.img`
 width: 100%;
 border-radius: 1rem;
+cursor: pointer;
     @media (max-width: 380px){
         width: 8rem;
     }
@@ -35,6 +37,7 @@ width: 100%;
 height: 6rem;
 background-color: white;
 border-radius: 1rem;
+
 @media (max-width: 380px){
     height: initial;
 }
@@ -47,6 +50,24 @@ font-weight: ${props => props.titl && "bolder"};
 margin-left: .5rem;
 
 @media (max-width: 380px){
+    width: 100%;
+    font-size: 1rem;
+}
+`
+export const DetailLink = styled.a`
+    margin-left: .5rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    cursor: pointer;
+    align-self: center;
+    color: ${colors.textLogo};
+    font-weight: bolder;
+
+    &:hover {
+        text-decoration: underline ${colors.textLogo}
+    }
+
+    @media (max-width: 380px){
     width: 100%;
     font-size: 1rem;
 }

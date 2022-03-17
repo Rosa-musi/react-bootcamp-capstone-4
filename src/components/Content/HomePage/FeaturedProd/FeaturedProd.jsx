@@ -1,17 +1,13 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import {
     FeaturedContainer,
     FeaturedTitle,
     FeaturesDiv,
-    FeaturedDiv,
-    FeaturedImg,
-    FeaturedTextDiv,
-    Text,
 } from './styledFeaturedProd'
 import Data from '../../../../mocks/en-us/featured-products.json'
 import Button from '../../../Common/Button/Button'
 import Card from '../../../Common/Card/Card'
-import {renderContext} from '../../../../context/renderContext'
 
 const featuredData = []
 Data.results.forEach(featured => {
@@ -26,24 +22,30 @@ Data.results.forEach(featured => {
 const FeaturedProd = () => {
 
     const [featured, setFeatured] = useState(featuredData)
-    const {renderProductList, setRenderProductList} = useContext(renderContext)
- 
-    const handleButton = () => {
-        setRenderProductList(true)
-    }
+    const [maxResults, setMaxResults] = useState([])
+
+    useEffect(() => {
+       if (featured.length <= 16){
+           setMaxResults(featured)
+       } else if (featured.length > 16) {
+            setMaxResults(featured.slice(0, 16))
+        }
+    }, [featured]);
+
+   console.log(maxResults)
   return (
     <FeaturedContainer>
         <FeaturedTitle>Featured Products</FeaturedTitle>
         <FeaturesDiv>
             {
-                featured.map(product => {
+                maxResults.map(product => {
                     return (
                         <Card key={crypto.randomUUID()} {...product}/>
                     )
                 })
             }
         </FeaturesDiv>
-        <Button onClick={handleButton}>View all products</Button>
+        <Link to="/products"><Button>View all products</Button></Link>
     </FeaturedContainer>
   )
 }

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 import {
     CategoriesContainer,
     CategoriesTitle,
@@ -29,10 +30,12 @@ const Categories = () => {
         <CategoriesDiv>
             {categories.map(category => {
                 return(
-                    <CategoryDiv key={crypto.randomUUID()}>
-                        <CategoryImg src={category.image}/>
-                        <CategoryTitle>{category.title}</CategoryTitle> 
-                    </CategoryDiv>
+                    <Link to="/products" key={crypto.randomUUID()}>
+                        <CategoryDiv >
+                            <CategoryImg src={category.image}/>
+                            <CategoryTitle>{category.title}</CategoryTitle> 
+                        </CategoryDiv>
+                    </Link>
                 )
             })}
         </CategoriesDiv>

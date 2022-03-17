@@ -14,7 +14,6 @@ Products.results.forEach(product => {
 export const renderContext = createContext()
 
 export const RenderProvider = (props) => {
-    const [renderProductList, setRenderProductList] = useState(false)
     const [filters, setFilters] = useState([])
     const [products, setProducts] = useState(productsData)
     const [newProducts, setNewProducts] = useState(productsData)
@@ -36,8 +35,6 @@ export const RenderProvider = (props) => {
 
     return (
         <renderContext.Provider value={{
-            renderProductList, 
-            setRenderProductList,
             filters, 
             setFilters,
             products, 

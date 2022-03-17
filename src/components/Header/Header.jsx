@@ -1,5 +1,6 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
 import logo from './Logo.png'
 import {
   HeaderContainer,
@@ -11,23 +12,18 @@ import {
   SearchDiv,
 } from './styledHeader'
 import {colors} from '../../utils/colors'
-import {renderContext} from '../../context/renderContext'
+
 
 const Header = () => {
 
-  const {renderProductList, setRenderProductList} = useContext(renderContext)
-
-  const handleHomePage = () => {
-    setRenderProductList(false)
-  }
-
   return (
     <HeaderContainer>
-        <HeaderLogoDiv onClick={handleHomePage}>
-            <HeaderLogo src={logo} alt="logo" />
-            <LogoText>Homify</LogoText>
-        </HeaderLogoDiv>
-      
+        <Link to="/home">
+          <HeaderLogoDiv>
+              <HeaderLogo src={logo} alt="logo" />
+              <LogoText>Homify</LogoText>
+          </HeaderLogoDiv>
+        </Link>
         <HeaderSearchDiv>
             <SearchDiv>
                 <FontAwesomeIcon 

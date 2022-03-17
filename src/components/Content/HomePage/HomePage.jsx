@@ -5,8 +5,13 @@ import FeaturedProd from './FeaturedProd/FeaturedProd'
 import {
   SliderContainer,
 } from './styledHomePage'
+import { useFeaturedBanners } from '../../../utils/hooks/useFeaturedBanners'
 
 const HomePage = () => {
+/* 
+  const [featuredBanners] = useFeaturedBanners()
+
+  console.log(featuredBanners.data)  */
   return (
     <SliderContainer>
         <Slider/>
