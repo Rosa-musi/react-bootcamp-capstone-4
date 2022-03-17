@@ -1,3 +1,4 @@
+import { faBold } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 import {colors} from '../../../utils/colors'
 
@@ -72,3 +73,4 @@ export const DetailLink = styled.a`
     font-size: 1rem;
 }
 `
+

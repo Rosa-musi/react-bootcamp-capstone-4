@@ -17,6 +17,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "^5.0.0",
     "styled-components": "^5.3.3",
+    "swiper": "^8.0.7",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -82,7 +83,6 @@
     ]
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "eslint-plugin-react-hooks": "^4.3.0"
   }
 }

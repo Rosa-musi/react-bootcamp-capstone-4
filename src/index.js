@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { RenderProvider } from './context/renderContext';
 import reportWebVitals from './reportWebVitals';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { 
@@ -23,7 +24,9 @@ library.add(
 
 ReactDOM.render(
   <React.StrictMode>
+    <RenderProvider>
     <App />
+    </RenderProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
