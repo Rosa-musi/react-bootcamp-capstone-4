@@ -8,8 +8,14 @@ import {
     SwiperContainer,
     ImageDiv,
     Images,
+    BuyDiv,
     Text,
     DescriptionDiv,
+    Divider,
+    Table,
+    Tr,
+    InputDiv,
+    InputItems,
 } from './styledProductDetail'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Controller, Thumbs } from "swiper";
@@ -27,6 +33,7 @@ const ProductDetail = () => {
     console.log(detail)
   return (
     <ProdDetContainer>
+        <Text bold title list>{product.data.name}</Text>
         <SwiperContainer>
           <Swiper
             id="main"
@@ -50,47 +57,58 @@ const ProductDetail = () => {
                                 className='imagen'
                             /> 
                             </ImageDiv>
-
                         </SwiperSlide>
                     )
                 })}
             </Swiper>
         </SwiperContainer> 
+        
+        <BuyDiv>
+            <InputDiv>
+                <Text bold list input>Items</Text>
+                <InputItems type="number"/>
+            </InputDiv>
+            <Button center>add to cart            
+                <FontAwesomeIcon 
+                    icon="shopping-cart" 
+                    style={{
+                    color: colors.textLogo, 
+                    marginLeft: "1rem",
+                    cursor: "pointer",
+                    }}
+                />
+            </Button>
+
+            
+        </BuyDiv>
+
+
         <DescriptionDiv>
-        <Text><Text bold as="span">Name: </Text>{product.data.name}</Text>
-        <Text><Text bold as="span">Price: </Text>{product.data.price}</Text>
-        <Text><Text bold as="span">Sku: </Text>{product.data.sku}</Text>
-        <Text><Text bold as="span">Category: </Text>{product.data.category.slug}</Text>
-        <Text as="ul">
-        <Text bold as="span">Tags: </Text> 
-            {product.tags.map(tag => {
-                return(
-                    <Text li as="li" key={crypto.randomUUID()}>{tag}</Text>
-                )
-            })}
-        </Text>
-        <Text><Text bold as="span">Description: </Text>{product.data.description[0].text}</Text>
-        <Text>no. items</Text>
-        <Text as="ul">
-        <Text bold as="span">Specs: </Text>
-            {product.data.specs.map(spc => {
-                return(
-                    <Text as="li" key={crypto.randomUUID()}>
-                        <Text>{spc.spec_name}: {spc.spec_value}</Text>
-                    </Text>
-                )
-            })}
-        </Text>
-        <Button>add to cart            
-            <FontAwesomeIcon 
-                icon="shopping-cart" 
-                style={{
-                  color: colors.textLogo, 
-                  marginLeft: "1rem",
-                  cursor: "pointer",
-                }}
-            />
-        </Button>
+            <Divider></Divider>
+            <Text><Text bold as="span">Name: </Text>{product.data.name}</Text>
+            <Text><Text bold as="span">Price: </Text>{product.data.price}</Text>
+            <Text><Text bold as="span">Sku: </Text>{product.data.sku}</Text>
+            <Text><Text bold as="span">Category: </Text>{product.data.category.slug}</Text>
+            <Text><Text bold as="span">Items: </Text>{product.data.stock}</Text>
+            <Text bold list as="span">Tags: </Text>
+            {product.tags.map (tag => <Text list key={crypto.randomUUID()}>{tag}</Text>)}
+        
+
+            <Divider between></Divider>
+            <Text bold list> Description: </Text>
+            <Text>{product.data.description[0].text}</Text>
+            
+            <Divider between></Divider>
+            <Text bold as="span">Specs: </Text>
+            <Table>
+                {product.data.specs.map(spc => {
+                    return(
+                        <Tr as="tr" key={crypto.randomUUID()}>
+                            <Tr td name as="td">{spc.spec_name}</Tr><Tr as="td">{spc.spec_value}</Tr>
+                        </Tr>
+                    )
+                })}
+            </Table>
         </DescriptionDiv>
     </ProdDetContainer>
   )

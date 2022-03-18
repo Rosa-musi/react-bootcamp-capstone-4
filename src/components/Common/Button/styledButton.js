@@ -22,7 +22,7 @@ export const GeneralButton = styled.button`
     }
     @media (max-width: 380px){
         font-size: 1.1rem;
-        align-self: flex-start;
+        //align-self: ${props => props.start &&  "flex-start"};
         padding: .5rem;
     }
 `
