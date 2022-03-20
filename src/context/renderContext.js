@@ -1,13 +1,15 @@
 import React, {createContext, useState, useEffect} from 'react'
-import Products from '../mocks/en-us/products.json'
+import ProductsJson from '../mocks/en-us/products.json'
+import CategoriesJson from '../mocks/en-us/product-categories.json'
 
 
 const prueba = []
-Products.results.forEach(product => {
+ProductsJson.results.forEach(product => {
     prueba.push(product)
 })
+
 const productsData = []
-Products.results.forEach(product => {
+ProductsJson.results.forEach(product => {
     productsData.push({
        name: product.data.name,
        image: product.data.mainimage.url,
@@ -16,17 +18,65 @@ Products.results.forEach(product => {
     })
 })
 
+const categoriesData = []
+CategoriesJson.results.forEach(category => {
+    categoriesData.push({
+       title: category.data.name,
+       image: category.data.main_image.url,
+       slugs: category.slugs,
+       selected: false,
+    })
+    
+})
+
 export const renderContext = createContext()
 
 export const RenderProvider = (props) => {
-    const [filters, setFilters] = useState([])
+    
+    // hacer fetch a API de todos los productos
     const [products, setProducts] = useState(productsData)
     const [newProducts, setNewProducts] = useState(productsData)
+
+    // categories
+    // hacer fetch
+    const [categories, setCategories] = useState(categoriesData)
+    const [filters, setFilters] = useState([])
+
+    const handleSelected = (category) => {
+
+        if (filters.includes(category.slugs[0])){
+          const updateFilter = filters.filter(element => element != category.slugs[0])
+          setFilters(updateFilter)
+        } else {
+          setFilters ([...filters, category.slugs[0]])
+        }
+    
+      const newCategories = categories
+        newCategories.forEach(cat => {
+            if (cat.title === category.title){
+              cat.selected = !cat.selected
+            }
+        }) 
+        setCategories(newCategories)  
+
+    }
+    
+    const clearCatFilters = () => {
+        setFilters([])
+        const newCategories = categories
+        newCategories.forEach(cat => {
+            cat.selected = false
+        }) 
+        setCategories(newCategories)
+    }
+    
+
+    // product detail
     const [detail, setDetail] = useState(prueba)
 
     useEffect(() => {
         if (filters.length === 0){
-            setNewProducts(productsData)
+            setNewProducts(products)
         } else {
             let nuevo = []
           
@@ -47,7 +97,11 @@ export const RenderProvider = (props) => {
             setProducts,
             newProducts,
             setNewProducts,
-            detail
+            categories,
+            setCategories,
+            detail,
+            handleSelected,
+            clearCatFilters
         }}>
             {props.children}
         </renderContext.Provider>

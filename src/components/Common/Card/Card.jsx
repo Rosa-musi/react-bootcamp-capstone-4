@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {
     CardDiv, 
     CardImg,
@@ -11,15 +12,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {colors} from '../../../utils/colors'
 
 const Card = ({image, name, category, price}) => {
+
   return (
     <CardDiv>
-        <CardImg src={image} alt={name}/>
+        <Link to="/productDetail"><CardImg src={image} alt={name} /></Link>
         <CardTextDiv>
-            <Text titl>{name}</Text> 
+            <Text titl margBot>{name}</Text> 
             <Text>{category}</Text>
             <Text>${price}</Text> 
-            <DetailLink>Detail page</DetailLink>
-            <Button>add to cart            
+            <Link to="/productDetail"><DetailLink margBot>Detail page</DetailLink></Link>
+            <Button marTop>add to cart            
               <FontAwesomeIcon 
                 icon="shopping-cart" 
                 style={{

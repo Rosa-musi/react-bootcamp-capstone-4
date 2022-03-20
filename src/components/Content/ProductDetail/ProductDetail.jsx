@@ -22,8 +22,6 @@ import SwiperCore, { Navigation, Pagination, Controller, Thumbs } from "swiper";
 import 'swiper/css/bundle';
 SwiperCore.use([Navigation, Controller, Thumbs]);
 
-import './clases.css'
-
 const ProductDetail = () => {
 
     const {detail} = useContext(renderContext)

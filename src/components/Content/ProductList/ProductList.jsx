@@ -14,7 +14,10 @@ import {colors} from '../../../utils/colors'
 
 const ProductList = () => {
 
-  const {newProducts} = useContext(renderContext);
+  const {newProducts, filters, categories} = useContext(renderContext);
+
+  console.log(filters)
+  console.log(categories)
 
   return (
     <ProdListContainer>

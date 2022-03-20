@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import {
     CategoriesContainer,
@@ -8,39 +8,30 @@ import {
     CategoryImg,
     CategoryTitle,
 } from './styledCategories'
-import Data from '../../../../mocks/en-us/product-categories.json'
-
-const categoriesData = []
-Data.results.forEach(category => {
-    categoriesData.push({
-       title: category.data.name,
-       image: category.data.main_image.url,
-       slugs: category.data.slugs,
-    })
-    
-})
+import { renderContext } from '../../../../context/renderContext'
 
 const Categories = () => {
 
-    const [categories, setCategories] = useState(categoriesData)
+    const {categories, setCategories, handleSelected} = useContext(renderContext)
 
-   return (
-    <CategoriesContainer>
-        <CategoriesTitle>Shop by category</CategoriesTitle>
-        <CategoriesDiv>
-            {categories.map(category => {
-                return(
-                    <Link to="/products" key={crypto.randomUUID()}>
-                        <CategoryDiv >
-                            <CategoryImg src={category.image}/>
-                            <CategoryTitle>{category.title}</CategoryTitle> 
-                        </CategoryDiv>
-                    </Link>
-                )
-            })}
-        </CategoriesDiv>
-    </CategoriesContainer>
-  )
+
+    return (
+        <CategoriesContainer>
+            <CategoriesTitle>Shop by category</CategoriesTitle>
+            <CategoriesDiv>
+                {categories.map(category => {
+                    return(
+                        <Link to="/products" key={crypto.randomUUID()}>
+                            <CategoryDiv onClick={() => handleSelected(category)}>
+                                <CategoryImg src={category.image}/>
+                                <CategoryTitle>{category.title}</CategoryTitle> 
+                            </CategoryDiv>
+                        </Link>
+                    )
+                })}
+            </CategoriesDiv>
+        </CategoriesContainer>
+    )
 }
 
 export default Categories

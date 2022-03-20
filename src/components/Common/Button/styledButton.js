@@ -24,5 +24,6 @@ export const GeneralButton = styled.button`
         font-size: 1.1rem;
         //align-self: ${props => props.start &&  "flex-start"};
         padding: .5rem;
+        
     }
 `

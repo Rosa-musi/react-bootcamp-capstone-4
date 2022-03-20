@@ -16,7 +16,7 @@ export const SwiperContainer = styled.div`
     width: 50%;
     height: 20rem;
     margin-bottom: 3rem;
-    @media (max-width: 380px){
+    @media (max-width: 768px){
         width: 100%;
         margin-bottom: 1rem;
     }
@@ -43,7 +43,7 @@ export const BuyDiv = styled.div`
     flex-direction: row-reverse;
     justify-content: space-evenly;
     align-items: center;
-    @media (max-width: 380px){
+    @media (max-width: 768px){
         flex-direction: column;
     }
 `
@@ -52,8 +52,11 @@ export const InputDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    @media (max-width: 380px){
+    padding-top: .8rem;
+
+    @media (max-width: 768px){
         margin-bottom: 1rem;
+        padding-top: 0;
     }
 `
 

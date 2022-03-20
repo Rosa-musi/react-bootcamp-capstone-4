@@ -32,7 +32,6 @@ const FeaturedProd = () => {
         }
     }, [featured]);
 
-   console.log(maxResults)
   return (
     <FeaturedContainer>
         <FeaturedTitle>Featured Products</FeaturedTitle>

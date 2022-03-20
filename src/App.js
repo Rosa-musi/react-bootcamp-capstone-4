@@ -27,18 +27,12 @@ function App() {
       <GlobalStyle/>
         <MainContainer>
         <Header/>
-        <ProductDetail/>
-{/*         <Routes>
-          <Route path="/">
-            <Home/>
-          </Route>
-          <Route path="/home">
-            <Home/>
-          </Route>
-          <Route path="/products">
-            <ProductList/>
-          </Route>  
-        </Routes> */}
+         <Routes>
+          <Route path="/" element={<Home/>}/>   
+          <Route path="/home" element={<Home/>}/>
+          <Route path="/products" element={<ProductList/>}/>
+          <Route path="/productDetail" element={<ProductDetail/>}/>
+        </Routes> 
         <Footer/>
         </MainContainer>
     </Router>
