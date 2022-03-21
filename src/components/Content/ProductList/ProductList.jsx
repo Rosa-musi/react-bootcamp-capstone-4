@@ -16,9 +16,6 @@ const ProductList = () => {
 
   const {newProducts, filters, categories} = useContext(renderContext);
 
-  console.log(filters)
-  console.log(categories)
-
   return (
     <ProdListContainer>
         <SideBar/>

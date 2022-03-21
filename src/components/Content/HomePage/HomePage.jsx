@@ -12,13 +12,21 @@ import { useLatestAPI } from '../../../utils/hooks/useLatestAPI'
 const HomePage = () => {
     const {apiMetadata} = useLatestAPI() 
     const {featuredBanners} = useFeaturedBanners()
-    const {filters, setFilters, clearCatFilters, categories, setCategories} = useContext(renderContext)
+    const {filters, setFilters, categories, setCategories} = useContext(renderContext)
    
 
     //se cambia
-  useEffect(()=> {
-    clearCatFilters()
-  }, [setCategories, setFilters, categories, clearCatFilters]) 
+    useEffect(() => {
+      setFilters([])
+      const newCategories = categories
+      newCategories.forEach(cat => {
+          cat.selected = false
+      }) 
+      setCategories(newCategories)
+    }, [categories, setCategories, setFilters])
+
+  
+  
 
   return (
     <SliderContainer>

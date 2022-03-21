@@ -1,6 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react'
+import { useFetch } from '../utils/hooks/useFetch'
 import ProductsJson from '../mocks/en-us/products.json'
-import CategoriesJson from '../mocks/en-us/product-categories.json'
 
 
 const prueba = []
@@ -18,28 +18,47 @@ ProductsJson.results.forEach(product => {
     })
 })
 
-const categoriesData = []
-CategoriesJson.results.forEach(category => {
-    categoriesData.push({
-       title: category.data.name,
-       image: category.data.main_image.url,
-       slugs: category.slugs,
-       selected: false,
-    })
-    
-})
-
 export const renderContext = createContext()
 
 export const RenderProvider = (props) => {
+    //lastAPI
+    const [ref, setRef] = useState("")
+    const [dataRef, isLoadingRef, errorRef] = useFetch("https://wizeline-academy.cdn.prismic.io/api/v2")
+
     
+     useEffect(()=> {
+        errorRef ? console.log(error) :
+        !isLoadingRef && setRef(dataRef.refs[0].ref) 
+        console.log(ref)
+    }, [dataRef, errorRef, ref, isLoadingRef]) 
+
+
     // hacer fetch a API de todos los productos
     const [products, setProducts] = useState(productsData)
     const [newProducts, setNewProducts] = useState(productsData)
 
     // categories
     // hacer fetch
-    const [categories, setCategories] = useState(categoriesData)
+    const [categories, setCategories] = useState([])
+
+    const [dataCat, isLoadingCat, errorCat] = useFetch(`https://wizeline-academy.cdn.prismic.io/api/v2/documents/search?ref=${ref}&q=%5B%5Bat(document.type%2C%20%22category%22)%5D%5D&lang=en-us&pageSize=30`)
+
+    useEffect(() => {
+        let categoriesData = []
+        errorCat ? console.log(errorCat) :
+        !isLoadingCat && dataCat.results.forEach(category => {
+            categoriesData.push({
+                title: category.data.name,
+                image: category.data.main_image.url,
+                slugs: category.slugs,
+                selected: false,
+            }) 
+        })
+        setCategories(categoriesData)
+      
+    }, [dataCat, errorCat, isLoadingCat]) 
+
+    
     const [filters, setFilters] = useState([])
 
     const handleSelected = (category) => {
@@ -60,16 +79,6 @@ export const RenderProvider = (props) => {
         setCategories(newCategories)  
 
     }
-    
-    const clearCatFilters = () => {
-        setFilters([])
-        const newCategories = categories
-        newCategories.forEach(cat => {
-            cat.selected = false
-        }) 
-        setCategories(newCategories)
-    }
-    
 
     // product detail
     const [detail, setDetail] = useState(prueba)
@@ -101,7 +110,6 @@ export const RenderProvider = (props) => {
             setCategories,
             detail,
             handleSelected,
-            clearCatFilters
         }}>
             {props.children}
         </renderContext.Provider>
