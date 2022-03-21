@@ -1,28 +1,19 @@
 import { useEffect, useState } from "react";
-import { API_BASE_URL } from '../constants';
-import { useRef } from './useRef'
 
-export const useFetch = (endpoint) => {
-  const [data, setData] = useState([]);
+export const useRef = () => {
+  const [ref, setRef] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const [ref, refIsLoading] = useRef()
 
   useEffect(() => {
-    console.log(ref)
-    if(!ref || refIsLoading) {
-      return () => {};
-    }
     let controller = new AbortController();
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/documents/search?ref=${ref}${endpoint}`, {
+        const response = await fetch("https://wizeline-academy.cdn.prismic.io/api/v2", {
           signal: controller.signal
         });
         const data = await response.json();
-        setData(data);
+        setRef(data.refs[0].ref);
         setIsLoading(false);
       } catch (e) {
         console.log(e);
@@ -36,7 +27,7 @@ export const useFetch = (endpoint) => {
     return () => {
       controller.abort();
     };
-  }, [endpoint, ref, refIsLoading]);
+  }, []);
 
-  return [data, isLoading, error];
+  return [ref, isLoading];
 };

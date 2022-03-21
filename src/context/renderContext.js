@@ -22,7 +22,7 @@ export const renderContext = createContext()
 
 export const RenderProvider = (props) => {
     //lastAPI
-    const [ref, setRef] = useState("")
+/*     const [ref, setRef] = useState("")
     const [dataRef, isLoadingRef, errorRef] = useFetch("https://wizeline-academy.cdn.prismic.io/api/v2")
 
     
@@ -30,7 +30,7 @@ export const RenderProvider = (props) => {
         errorRef ? console.log(error) :
         !isLoadingRef && setRef(dataRef.refs[0].ref) 
         console.log(ref)
-    }, [dataRef, errorRef, ref, isLoadingRef]) 
+    }, [dataRef, errorRef, ref, isLoadingRef])  */
 
 
     // hacer fetch a API de todos los productos
@@ -41,11 +41,11 @@ export const RenderProvider = (props) => {
     // hacer fetch
     const [categories, setCategories] = useState([])
 
-    const [dataCat, isLoadingCat, errorCat] = useFetch(`https://wizeline-academy.cdn.prismic.io/api/v2/documents/search?ref=${ref}&q=%5B%5Bat(document.type%2C%20%22category%22)%5D%5D&lang=en-us&pageSize=30`)
+    const [dataCat, isLoadingCat, errorCat] = useFetch(`&q=%5B%5Bat(document.type%2C%20%22category%22)%5D%5D&lang=en-us&pageSize=30`)
 
     useEffect(() => {
         let categoriesData = []
-        errorCat ? console.log(errorCat) :
+        
         !isLoadingCat && dataCat.results.forEach(category => {
             categoriesData.push({
                 title: category.data.name,

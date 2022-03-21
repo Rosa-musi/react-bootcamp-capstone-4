@@ -9,11 +9,13 @@ import { renderContext } from '../../../context/renderContext'
 import { useFeaturedBanners } from '../../../utils/hooks/useFeaturedBanners'
 import { useLatestAPI } from '../../../utils/hooks/useLatestAPI'
 
+
 const HomePage = () => {
     const {apiMetadata} = useLatestAPI() 
-    const {featuredBanners} = useFeaturedBanners()
+    const {data: dat, isLoadong: isLoading} = useFeaturedBanners()
     const {filters, setFilters, categories, setCategories} = useContext(renderContext)
-   
+
+    console.log(dat)
 
     //se cambia
     useEffect(() => {
@@ -25,7 +27,7 @@ const HomePage = () => {
       setCategories(newCategories)
     }, [categories, setCategories, setFilters])
 
-  
+    
   
 
   return (
