@@ -4,6 +4,7 @@ import Header from './components/Header/Header'
 import Home from './components/Content/HomePage/HomePage'
 import ProductList from './components/Content/ProductList/ProductList'
 import ProductDetail from './components/Content/ProductDetail/ProductDetail';
+import Search from './components/Content/Search/Search'
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Footer from './components/Footer/Footer'
 import GlobalStyle from './globalStyles'
@@ -29,11 +30,12 @@ function App() {
         <MainContainer>
         <Header/>
          <Routes>
-          <Route exatc path="/" element={<Home/>}/>   
+          <Route exact path="/" element={<Home/>}/>   
           <Route exact path="/home" element={<Home/>}/>
             <Route path="/products" element={<ProductList/>}/> 
         {/*     <Route path={`/products/:${slugs}`} element={<ProductList/>}/> */}
           <Route exact path="/productDetail" element={<ProductDetail/>}/>
+          <Route exact path= "/search" element={<Search/>}/>
           <Route exact path="*" element={<ErrorPage />} />
         </Routes> 
         <Footer/>

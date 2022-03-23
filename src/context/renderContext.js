@@ -13,11 +13,7 @@ ProductsJson.results.forEach(product => {
 export const renderContext = createContext()
 
 export const RenderProvider = (props) => {
-
-
-
     // categories
-    // hacer fetch
     const [categories, setCategories] = useState([])
 
     const [dataCat, isLoadingCat, errorCat] = useFetch(`&q=%5B%5Bat(document.type%2C%20%22category%22)%5D%5D&lang=en-us&pageSize=30`)
@@ -64,7 +60,6 @@ export const RenderProvider = (props) => {
     // product detail
     const [detail, setDetail] = useState({})
 
- 
     // hacer fetch a API de todos los productos
     const [dataProd, isLoadingProd, errorProd] = useFetch('&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&lang=en-us&pageSize=30')
     const [products, setProducts] = useState([{}])
@@ -104,6 +99,12 @@ export const RenderProvider = (props) => {
         
     }, [filters, products]);
     
+    //Search
+
+    const [search, setSearch] = useState("")
+    const [dataSearch, setDataSearch] = useState([{}])
+
+  
 
     return (
         <renderContext.Provider value={{
@@ -119,7 +120,11 @@ export const RenderProvider = (props) => {
             handleSelected,
             slugs,
             setDetail,
-            dataProd
+            dataProd,
+            search,
+            setSearch,
+            dataSearch, 
+            setDataSearch
         }}>
             {props.children}
         </renderContext.Provider>

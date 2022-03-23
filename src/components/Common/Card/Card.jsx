@@ -6,12 +6,13 @@ import {
     CardTextDiv,
     Text,
     DetailLink,
+    LinkRouter
 } from './styledCard'
 import Button from '../Button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {colors} from '../../../utils/colors'
 
-const Card = ({image, name, category, price, handleDetail}) => {
+const Card = ({image, name, category, price, description, handleDetail, noDetail, coment}) => {
 
   return (
     <CardDiv>
@@ -20,7 +21,8 @@ const Card = ({image, name, category, price, handleDetail}) => {
             <Text titl margBot>{name}</Text> 
             <Text>{category}</Text>
             <Text>${price}</Text> 
-            <Link to="/productDetail" onClick={handleDetail}><DetailLink margBot>Detail page</DetailLink></Link>
+            <LinkRouter className={noDetail} to="/productDetail" onClick={handleDetail}><DetailLink margBot>Detail page</DetailLink></LinkRouter>
+            <Text>{description}</Text>
             <Button marTop>add to cart            
               <FontAwesomeIcon 
                 icon="shopping-cart" 
