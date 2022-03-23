@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { renderContext } from '../../../context/renderContext'
 import Button from '../../Common/Button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,14 +24,13 @@ SwiperCore.use([Navigation, Controller, Thumbs]);
 
 const ProductDetail = () => {
 
-    const {detail} = useContext(renderContext)
-    const [product, setProduct] = useState(detail[0])
+const {detail} = useContext(renderContext)
 
-    console.log(product)
-    console.log(detail)
+console.log(detail)
+
   return (
     <ProdDetContainer>
-        <Text bold title list>{product.data.name}</Text>
+        <Text bold title list>{detail.data.name}</Text>
         <SwiperContainer>
           <Swiper
             id="main"
@@ -40,18 +39,15 @@ const ProductDetail = () => {
             slidesPerView={1}
             style={{"--swiper-navigation-color": colors.textLogo}}
             onInit={(swiper) => console.log("Swiper initialized!", swiper)}
-            onSlideChange={(swiper) => {
-            console.log("Slide index changed to: ", swiper.activeIndex);
-            }}
             onReachEnd={() => console.log("Swiper end reached")}
             >
-                {product.data.images.map(imag => {
+                {detail.data.images.map(imag => {
                     return(
                         <SwiperSlide  key={crypto.randomUUID()}>
                             <ImageDiv>
                              <Images
                                 src={imag.image.url}
-                                alt={product.data.name}
+                                alt={detail.data.name}
                                 className='imagen'
                             /> 
                             </ImageDiv>
@@ -83,29 +79,37 @@ const ProductDetail = () => {
 
         <DescriptionDiv>
             <Divider></Divider>
-            <Text><Text bold as="span">Name: </Text>{product.data.name}</Text>
-            <Text><Text bold as="span">Price: </Text>{product.data.price}</Text>
-            <Text><Text bold as="span">Sku: </Text>{product.data.sku}</Text>
-            <Text><Text bold as="span">Category: </Text>{product.data.category.slug}</Text>
-            <Text><Text bold as="span">Items: </Text>{product.data.stock}</Text>
+            <Text><Text bold as="span">Name: </Text>{detail.data.name}</Text>
+            <Text><Text bold as="span">Price: </Text>{detail.data.price}</Text>
+            <Text><Text bold as="span">Sku: </Text>{detail.data.sku}</Text>
+            <Text><Text bold as="span">Category: </Text>{detail.data.category.slug}</Text>
+            <Text><Text bold as="span">Items: </Text>{detail.data.stock}</Text>
             <Text bold list as="span">Tags: </Text>
-            {product.tags.map (tag => <Text list key={crypto.randomUUID()}>{tag}</Text>)}
+            {detail.tags.map (tag => <Text list key={crypto.randomUUID()}>{tag}</Text>)}
         
 
             <Divider between></Divider>
             <Text bold list> Description: </Text>
-            <Text>{product.data.description[0].text}</Text>
+            <Text>{detail.data.description[0].text}</Text>
             
             <Divider between></Divider>
             <Text bold as="span">Specs: </Text>
             <Table>
-                {product.data.specs.map(spc => {
+                <Tr as="thead">
+                    <Tr as="tr">
+                        <Tr name  as="th">spec</Tr>
+                        <Tr  as="th">description</Tr>
+                    </Tr>
+                </Tr>
+                <Tr as="tbody">
+                {detail.data.specs.map(spc => {
                     return(
                         <Tr as="tr" key={crypto.randomUUID()}>
                             <Tr td name as="td">{spc.spec_name}</Tr><Tr as="td">{spc.spec_value}</Tr>
                         </Tr>
                     )
                 })}
+                </Tr>
             </Table>
         </DescriptionDiv>
     </ProdDetContainer>

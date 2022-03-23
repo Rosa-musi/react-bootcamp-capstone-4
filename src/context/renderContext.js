@@ -8,34 +8,13 @@ ProductsJson.results.forEach(product => {
     prueba.push(product)
 })
 
-const productsData = []
-ProductsJson.results.forEach(product => {
-    productsData.push({
-       name: product.data.name,
-       image: product.data.mainimage.url,
-       category: product.data.category.slug,
-       price: product.data.price,
-    })
-})
+
 
 export const renderContext = createContext()
 
 export const RenderProvider = (props) => {
-    //lastAPI
-/*     const [ref, setRef] = useState("")
-    const [dataRef, isLoadingRef, errorRef] = useFetch("https://wizeline-academy.cdn.prismic.io/api/v2")
-
-    
-     useEffect(()=> {
-        errorRef ? console.log(error) :
-        !isLoadingRef && setRef(dataRef.refs[0].ref) 
-        console.log(ref)
-    }, [dataRef, errorRef, ref, isLoadingRef])  */
 
 
-    // hacer fetch a API de todos los productos
-    const [products, setProducts] = useState(productsData)
-    const [newProducts, setNewProducts] = useState(productsData)
 
     // categories
     // hacer fetch
@@ -58,16 +37,18 @@ export const RenderProvider = (props) => {
       
     }, [dataCat, errorCat, isLoadingCat]) 
 
-    
     const [filters, setFilters] = useState([])
+    const [slugs, setSlugs] = useState("")
 
     const handleSelected = (category) => {
 
         if (filters.includes(category.slugs[0])){
           const updateFilter = filters.filter(element => element != category.slugs[0])
           setFilters(updateFilter)
+          setSlugs(filters.join("_"))
         } else {
           setFilters ([...filters, category.slugs[0]])
+          setSlugs(filters.join("_"))
         }
     
       const newCategories = categories
@@ -81,7 +62,33 @@ export const RenderProvider = (props) => {
     }
 
     // product detail
-    const [detail, setDetail] = useState(prueba)
+    const [detail, setDetail] = useState({})
+
+ 
+    // hacer fetch a API de todos los productos
+    const [dataProd, isLoadingProd, errorProd] = useFetch('&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&lang=en-us&pageSize=30')
+    const [products, setProducts] = useState([{}])
+    const [newProducts, setNewProducts] = useState([{}])
+
+    useEffect(() => {
+        const productsData = []
+        
+        !isLoadingProd && dataProd.results.forEach(product => {
+            productsData.push({
+            name: product.data.name,
+            image: product.data.mainimage.url,
+            category: product.data.category.slug,
+            price: product.data.price,
+            id: product.id
+            })
+        })
+
+        setProducts(productsData)
+        setNewProducts(productsData)
+
+      
+    }, [dataProd.results, isLoadingProd]) 
+
 
     useEffect(() => {
         if (filters.length === 0){
@@ -110,6 +117,9 @@ export const RenderProvider = (props) => {
             setCategories,
             detail,
             handleSelected,
+            slugs,
+            setDetail,
+            dataProd
         }}>
             {props.children}
         </renderContext.Provider>

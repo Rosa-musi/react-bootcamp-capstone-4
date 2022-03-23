@@ -17,7 +17,6 @@ export const useRef = () => {
         setIsLoading(false);
       } catch (e) {
         console.log(e);
-        setError(e);
         setIsLoading(false);
       }
     };

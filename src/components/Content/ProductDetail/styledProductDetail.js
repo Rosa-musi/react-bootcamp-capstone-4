@@ -109,4 +109,6 @@ export const Tr = styled(Text)`
     width: auto;
     background-color: ${props => props.name ? colors.light : "white"};
     padding-right: ${props => props.td ? "3rem" : "0"};
+    border-bottom: ${props => props.line && "1px solid black"};
+    text-align: left;
 `
