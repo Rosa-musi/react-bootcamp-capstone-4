@@ -18,7 +18,7 @@ import {
 
 const Header = () => {
 
-  const {search, setSearch, dataSearch, setDataSearch} = useContext(renderContext)
+  const {search, setSearch, dataSearch, setDataSearch, setQueryUrl} = useContext(renderContext)
 
   const [data, isLoading, error] = useFetch(`&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&q=%5B%5Bfulltext(document%2C%20%22${search}%22)%5D%5D&lang=en-us&pageSize=20`)
     
@@ -38,11 +38,12 @@ const Header = () => {
     })
 
       setDataSearch(productsData)
+      setQueryUrl({searchs: search})
       setSearch("")
   }
-console.log(data)
-const handleChange = (e) => {
-  setSearch(e.target.value)
+
+  const handleChange = (e) => {
+    setSearch(e.target.value)
   }
   return (
     <HeaderContainer>

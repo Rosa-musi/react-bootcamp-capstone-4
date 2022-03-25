@@ -1,5 +1,8 @@
 import React, {useState, useContext, useEffect} from 'react'
+import { useSearchParams } from 'react-router-dom'
+
 import SideBar from './SideBar/SideBar'
+import Card from '../../Common/Card/Card'
 import {
     ProdListContainer,
     ListDiv,
@@ -9,26 +12,34 @@ import {
     Text,
     StyledIcon,
 } from './styledProductList'
-import Card from '../../Common/Card/Card'
+
 import { renderContext } from '../../../context/renderContext'
+
 
 const ProductList = () => {
 
-  const {newProducts, dataProd, setDetail} = useContext(renderContext)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const {newProducts, dataProd, setDetail, slugs, setSlugs, filters} = useContext(renderContext)
   const [totalPages, setTotalPages] = useState(Math.ceil(newProducts.length / 12))
   const [currentPage, setCurrentPage] = useState(1)
   const [prodPerPage, setProdPerPage] = useState(12)
 
   // Get Current products
-  const [indexOfLastPost, setIndexOfLastPost] = useState(currentPage * prodPerPage)
-  const [indexOfFirstPost, ] = useState(indexOfLastPost - prodPerPage)
-  const [currentPosts, setCurrentPosts] = useState([])
+  const [indexOfLastProd, setIndexOfLastProd] = useState(currentPage * prodPerPage)
+  const [indexOfFirstProd, setIndexOfFirstProd] = useState(0)
+  const [currentProds, setCurrentProds] = useState([])
 
-  console.log(Math.ceil(newProducts.length / 12))
+ 
+  console.log(slugs)
+  useEffect( () => {
+    setSlugs(filters.join("_"))
+    slugs != "" ? setSearchParams({search: slugs}) : setSearchParams();
+  }, [slugs, setSearchParams, filters, setSlugs])
+
   useEffect(() => {
-    console.log("a")
-   setCurrentPosts(newProducts.slice(indexOfFirstPost, indexOfLastPost))
-  },[newProducts, indexOfFirstPost, indexOfLastPost])
+    setIndexOfFirstProd(indexOfLastProd - prodPerPage)
+    setCurrentProds(newProducts.slice(indexOfFirstProd, indexOfLastProd))
+  },[newProducts, indexOfFirstProd, indexOfLastProd, prodPerPage])
   
   const handleDetail = (detailProd) => {
      dataProd.results.forEach(obj => {
@@ -45,24 +56,17 @@ const ProductList = () => {
  }
 
  const handleNext = () => {
-  if (newProducts.length > indexOfLastPost) {
+  if (newProducts.length > indexOfLastProd) {
     setCurrentPage( (prevState) => {
         return(
           prevState + 1
         )
     })
-  }  else if (newProducts.length > indexOfLastPost && products.length < currentPage + 1) {
-    setCurrentPage( (prevState) => {
-        return(
-          prevState + 1
-        )
-    })
-      setCurrentPosts(products.slice(indexOfFirstPost, products.length))
-    } 
+  } 
  }
 
  useEffect(() => {
-   setIndexOfLastPost(currentPage * prodPerPage)
+   setIndexOfLastProd(currentPage * prodPerPage)
    setTotalPages(Math.ceil(newProducts.length / 12))
  }, [currentPage, prodPerPage, totalPages, newProducts.length])
 
@@ -72,9 +76,9 @@ const ProductList = () => {
         <ListDiv>
             <ProdListTitle>Products List</ProdListTitle>
             <ProductsDiv>
-              {currentPosts.length === 0 ? 
+              {currentProds.length === 0 ? 
                 <ProdListTitle>There are no products in those categories</ProdListTitle> :
-                currentPosts.map(product => {
+                currentProds.map(product => {
                   return(
                     <Card key={crypto.randomUUID()}  handleDetail={() => handleDetail(product)} {...product}/>
                   )
@@ -82,17 +86,17 @@ const ProductList = () => {
               }
             </ProductsDiv>
             <PaginationDiv>
-              <StyledIcon
-                icon="fa-solid fa-chevron-left" 
-                onClick={handlePrev}
-                className={currentPage < 2 && "hide"}
-              />
-              <Text>{currentPage} / {totalPages}</Text>
-              <StyledIcon
-                icon="fa-solid fa-chevron-right"
-                onClick={handleNext}
-                className={currentPage === totalPages && "hide"}
-              />
+                <StyledIcon
+                  icon="fa-solid fa-chevron-left" 
+                  onClick={handlePrev}
+                  className={currentPage < 2 && "hide"}
+                />
+                <Text>{currentPage} / {totalPages}</Text>
+                <StyledIcon
+                  icon="fa-solid fa-chevron-right"
+                  onClick={handleNext}
+                  className={currentPage === totalPages && "hide"}
+                />
             </PaginationDiv>
         </ListDiv>
     </ProdListContainer>

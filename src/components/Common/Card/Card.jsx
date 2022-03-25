@@ -12,11 +12,11 @@ import Button from '../Button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {colors} from '../../../utils/colors'
 
-const Card = ({image, name, category, price, description, handleDetail, noDetail, coment}) => {
+const Card = ({image, name, category, price, description, handleDetail, noDetail, id}) => {
 
   return (
     <CardDiv>
-        <Link to="/productDetail" onClick={handleDetail}><CardImg src={image} alt={name} /></Link>
+        <Link to={`/productDetail/${id}`} onClick={handleDetail}><CardImg src={image} alt={name} /></Link>
         <CardTextDiv>
             <Text titl margBot>{name}</Text> 
             <Text>{category}</Text>

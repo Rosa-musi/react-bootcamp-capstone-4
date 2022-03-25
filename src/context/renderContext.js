@@ -39,22 +39,20 @@ export const RenderProvider = (props) => {
     const handleSelected = (category) => {
 
         if (filters.includes(category.slugs[0])){
-          const updateFilter = filters.filter(element => element != category.slugs[0])
-          setFilters(updateFilter)
-          setSlugs(filters.join("_"))
+            const updateFilter = filters.filter(element => element != category.slugs[0])
+            setFilters(updateFilter)
         } else {
-          setFilters ([...filters, category.slugs[0]])
-          setSlugs(filters.join("_"))
+            setFilters ([...filters, category.slugs[0]])
         }
     
-      const newCategories = categories
+        const newCategories = categories
         newCategories.forEach(cat => {
             if (cat.title === category.title){
               cat.selected = !cat.selected
             }
         }) 
-        setCategories(newCategories)  
 
+        setCategories(newCategories)  
     }
 
     // product detail
@@ -103,6 +101,7 @@ export const RenderProvider = (props) => {
 
     const [search, setSearch] = useState("")
     const [dataSearch, setDataSearch] = useState([{}])
+    const [queryUrl, setQueryUrl] = useState("")
 
   
 
@@ -119,12 +118,15 @@ export const RenderProvider = (props) => {
             detail,
             handleSelected,
             slugs,
+            setSlugs,
             setDetail,
             dataProd,
             search,
             setSearch,
             dataSearch, 
-            setDataSearch
+            setDataSearch,
+            queryUrl,
+            setQueryUrl
         }}>
             {props.children}
         </renderContext.Provider>

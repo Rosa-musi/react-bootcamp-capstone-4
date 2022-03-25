@@ -26,6 +26,9 @@ const ProductDetail = () => {
 
 const {detail} = useContext(renderContext)
 
+
+
+
 console.log(detail)
 
   return (

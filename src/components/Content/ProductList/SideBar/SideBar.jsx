@@ -12,7 +12,7 @@ import { renderContext } from '../../../../context/renderContext'
 
 const SideBar = () => {
 
-  const {categories, setCategories, handleSelected, filters, setFilters} = useContext(renderContext)
+  const {categories, setCategories, handleSelected, filters, setFilters, setSlugs} = useContext(renderContext)
 
   const handleClear = () => {
     setFilters([])
@@ -21,6 +21,7 @@ const SideBar = () => {
       cat.selected = false
     }) 
     setCategories(newCategories)
+    setSlugs("")
 }
 
   return (

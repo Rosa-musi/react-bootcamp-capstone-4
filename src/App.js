@@ -28,17 +28,16 @@ function App() {
     <Router>
       <GlobalStyle/>
         <MainContainer>
-        <Header/>
-         <Routes>
-          <Route exact path="/" element={<Home/>}/>   
-          <Route exact path="/home" element={<Home/>}/>
+          <Header/>
+          <Routes>
+            <Route exact path="/" element={<Home/>}/>   
+            <Route exact path="/home" element={<Home/>}/>
             <Route path="/products" element={<ProductList/>}/> 
-        {/*     <Route path={`/products/:${slugs}`} element={<ProductList/>}/> */}
-          <Route exact path="/productDetail" element={<ProductDetail/>}/>
-          <Route exact path= "/search" element={<Search/>}/>
-          <Route exact path="*" element={<ErrorPage />} />
-        </Routes> 
-        <Footer/>
+            <Route exact path="/productDetail/:id" element={<ProductDetail/>}/>
+            <Route exact path= "/search" element={<Search/>}/>
+            <Route exact path="*" element={<ErrorPage />} />
+          </Routes> 
+          <Footer/>
         </MainContainer>
     </Router>
   );
