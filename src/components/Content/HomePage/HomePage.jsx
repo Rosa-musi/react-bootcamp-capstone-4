@@ -1,5 +1,6 @@
 import React, {useContext, useEffect} from 'react'
-import Slider from './Slider/Slider'
+//
+import Slider from './Slider/SwipSlider'
 import Categories from './Categories/Categories'
 import FeaturedProd from './FeaturedProd/FeaturedProd'
 import {
