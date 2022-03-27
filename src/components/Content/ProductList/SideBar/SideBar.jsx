@@ -1,52 +1,28 @@
-import React, {useState, useContext, useCallback, useEffect} from 'react'
+import React, { useContext } from 'react'
 import {
     SideBarContainer,
     ProdListTitle,
     Text,
     SideBarWrapper
 } from './styledSideBar'
-import Data from '../../../../mocks/en-us/product-categories.json'
 import { renderContext } from '../../../../context/renderContext'
 
 
-const categoriesData = []
-Data.results.forEach(category => {
-    categoriesData.push({
-       title: category.data.name,
-       image: category.data.main_image.url,
-       slugs: category.slugs,
-       selected: false,
-    })
-    
-})
+
 
 const SideBar = () => {
 
+  const {categories, setCategories, handleSelected, filters, setFilters, setSlugs} = useContext(renderContext)
 
-  const [categories, setCategories] = useState(categoriesData)
-  const {filters, setFilters} = useContext(renderContext)
-
- 
-
-  const handleSelected = (category) => {
-    if (filters.includes(category.slugs[0])){
-      const updateFilter = filters.filter(element => element != category.slugs[0])
-      setFilters(updateFilter)
-    } else {
-      setFilters ([...filters, category.slugs[0]])
-    }
-
-
-  const newCategories = categories
+  const handleClear = () => {
+    setFilters([])
+    const newCategories = categories
     newCategories.forEach(cat => {
-        if (cat.title === category.title){
-          cat.selected = !cat.selected
-        }
+      cat.selected = false
     }) 
-    setCategories(newCategories)  
-  }
-
-
+    setCategories(newCategories)
+    setSlugs("")
+}
 
   return (
     <SideBarWrapper>
@@ -55,6 +31,9 @@ const SideBar = () => {
         {categories.map(category => {
           return <Text className={category.selected ? "true" : "false"} onClick={() =>handleSelected(category)} key={crypto.randomUUID()}>{category.title}</Text>
         })}
+        {
+          filters.length != 0 && <Text onClick={handleClear}>Clear Filters</Text>
+        }
     </SideBarContainer>
     </SideBarWrapper>
   )

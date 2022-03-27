@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { colors } from '../../../../utils/colors'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const SideBarWrapper = styled.div`
     display: flex;

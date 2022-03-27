@@ -2,26 +2,17 @@ import styled from 'styled-components'
 import {colors} from '../../../utils/colors'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
-
-export const ProdListContainer = styled.div`
-    display: flex;
-    width: 100%;
-    min-height: 90vh;
-    background-color: ${colors.light};
-    @media (max-width: 768px){
-        flex-direction: column;
-        align-items: center;
-    }
-`
 export const ListDiv = styled.div`
     display: flex;
     flex-direction: column;
-    width: 90%;
-    height: auto;
-
-    @media (max-width: 768px){
-        align-items: center;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4rem;
+    background-color: ${colors.light};
+    @media (max-width: 380px){
+        padding-top: 1rem;
     }
 `
 
@@ -31,10 +22,9 @@ export const ProdListTitle = styled.h2`
     color: ${colors.text};
     margin-top: 3rem;
     margin-bottom: 2rem;
-    margin-left: 1rem;
     @media (max-width: 380px){
         font-size: 1.5rem;
-        margin-top: 1.3rem;
+        margin-top: 1rem;
         margin-bottom: .5rem;
     }
 `
@@ -44,7 +34,6 @@ export const ProductsDiv = styled.div`
     flex-wrap: wrap;
     flex-direction: row;
     margin-bottom: 2.5rem;
-    width: 100%;
     @media (max-width: 768px){
         width: 100%;
     }
@@ -91,3 +80,40 @@ export const StyledIcon = styled(FontAwesomeIcon).attrs(props => ({
 
     }
 `
+
+/* <div>
+{dataSearch.map(prod =>{
+    return(
+      <Card key={crypto.randomUUID()} {...prod} />
+    )
+    
+})}
+
+</div> 
+<ListDiv>
+<ProdListTitle>Products List</ProdListTitle>
+<ProductsDiv>
+{dataSearch.length === 0 ? 
+  <ProdListTitle>Sorry, we couldn't find that product</ProdListTitle> :
+  dataSearch.map(prod =>{
+          return(
+              <Card key={crypto.randomUUID()} {...prod} />
+          )
+      })
+  
+}
+</ProductsDiv> 
+<PaginationDiv>
+<StyledIcon
+icon="fa-solid fa-chevron-left" 
+onClick={handlePrev}
+className={currentPage < 2 && "hide"}
+/>
+<Text>{currentPage} / {totalPages}</Text>
+<StyledIcon
+icon="fa-solid fa-chevron-right"
+onClick={handleNext}
+className={currentPage === totalPages && "hide"}
+/>
+</PaginationDiv>  
+</ListDiv>  */

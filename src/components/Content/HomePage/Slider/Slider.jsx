@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react'
-import Data from '../../../../mocks/en-us/featured-banners.json'
+import { useFetch } from '../../../../utils/hooks/useFetch'
 import {
     SliderContainer,
     CarouselImg,
@@ -11,23 +11,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {colors} from '../../../../utils/colors'
 
 const Slider = () => {
-    const banersData = []
-    Data.results.forEach(baner => {
-        let description = ""
-        baner.data.description.forEach(obj => {
-            description = obj.text
-        })
-        banersData.push({
-           title: baner.data.title,
-           image: baner.data.main_image.url,
-           description: description,
-        })
-        
-    })
     
-    const [baners, setBaners] = useState(banersData)
+    const [baners, setBaners] = useState([{}])
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [selectedImage, setSelectedImage] = useState(baners[0])
+
+    const [data, isLoading, error] = useFetch(`&q=${encodeURIComponent(
+        '[[at(document.type, "banner")]]'
+      )}&lang=en-us&pageSize=5`)
+
+      useEffect(() => {
+        const banersData = []
+        !isLoading && data.results.forEach(baner => {
+            let description = ""
+            baner.data.description.forEach(obj => {
+                description = obj.text
+            })
+            banersData.push({
+               title: baner.data.title,
+               image: baner.data.main_image.url,
+               description: description,
+            })
+            
+        }) 
+        setBaners(banersData)
+      }, [data.results, isLoading])
+
 
 
     const previous = () => {
@@ -65,7 +74,7 @@ const Slider = () => {
                     color: colors.textLogo,
                   }} 
             />
-            <ImgBanerContainer>
+             <ImgBanerContainer>
                 <CarouselImg 
                     src={selectedImage.image} 
                     alt="imágen" 
@@ -75,7 +84,7 @@ const Slider = () => {
                     <Text description>{selectedImage.description}</Text>
                 </TextDiv>
                 
-            </ImgBanerContainer>
+            </ImgBanerContainer> 
             
             <FontAwesomeIcon 
                 onClick={next} 

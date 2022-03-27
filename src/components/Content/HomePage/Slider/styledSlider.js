@@ -20,9 +20,20 @@ export const ImgBanerContainer = styled.div`
     display: flex;
     flex-direction: row;
     height: fit-content;
-    width: 50%;
+    width: 100%;
     @media (max-width: 768px){
         width: 100%;
+    }
+`
+export const SwiperContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 20rem;
+    margin-bottom: 3rem;
+    @media (max-width: 768px){
+        width: 100%;
+        margin-bottom: 1rem;
     }
 `
 export const CarouselImg = styled.img`

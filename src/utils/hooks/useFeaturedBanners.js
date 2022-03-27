@@ -10,6 +10,8 @@ export function useFeaturedBanners() {
   }));
 
   useEffect(() => {
+
+    //¿qué hace esto?
     if (!apiRef || isApiMetadataLoading) {
       return () => {};
     }

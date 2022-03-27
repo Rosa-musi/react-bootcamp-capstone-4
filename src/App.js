@@ -1,10 +1,19 @@
-import { useFeaturedBanners } from './utils/hooks/useFeaturedBanners';
+import { useContext } from 'react'
 import styled from 'styled-components'
 import Header from './components/Header/Header'
-import Content from './components/Content/Content'
+import Home from './components/Content/HomePage/HomePage'
+import ProductList from './components/Content/ProductList/ProductList'
+import ProductDetail from './components/Content/ProductDetail/ProductDetail';
+import Search from './components/Content/Search/Search'
+import ErrorPage from './components/ErrorPage/ErrorPage';
 import Footer from './components/Footer/Footer'
 import GlobalStyle from './globalStyles'
-import { RenderProvider } from './context/renderContext';
+import { renderContext } from './context/renderContext'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 const MainContainer = styled.div`
   display: flex;
@@ -13,23 +22,24 @@ const MainContainer = styled.div`
 `
 
 function App() {
-  /* const { data, isLoading } = useFeaturedBanners();
-  console.log(data, isLoading); */
 
+  const {slugs} = useContext(renderContext)
   return (
-    <>
-    <GlobalStyle/>
-      <RenderProvider>
+    <Router>
+      <GlobalStyle/>
         <MainContainer>
-        <Header/>
-        <Content/>
-        <Footer/>
+          <Header/>
+          <Routes>
+            <Route exact path="/" element={<Home/>}/>   
+            <Route exact path="/home" element={<Home/>}/>
+            <Route path="/products" element={<ProductList/>}/> 
+            <Route exact path="/productDetail/:id" element={<ProductDetail/>}/>
+            <Route exact path= "/search" element={<Search/>}/>
+            <Route exact path="*" element={<ErrorPage />} />
+          </Routes> 
+          <Footer/>
         </MainContainer>
-      </RenderProvider>
-    </>
-
-
-    
+    </Router>
   );
 }
 

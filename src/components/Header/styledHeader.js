@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import {colors} from '../../utils/colors'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const HeaderContainer = styled.header`
     font-size: 1.2rem;
@@ -57,10 +58,46 @@ export const HeaderSearchDiv = styled.div`
     }
 `
 export const SearchDiv = styled.div`
+    display: flex;
+    align-items: center;
     width: fit-content;
+    height: fit-content;
+    margin-right: 3rem;
+    @media (max-width: 768px){
+        margin-right: 1rem;
+    }
 `
 export const SearchInput = styled.input`
     @media (max-width: 768px){
         width: 7rem;
+    }
+`
+export const StyledSearch = styled(FontAwesomeIcon)`
+    color: ${colors.textLogo};
+    cursor: pointer;
+    padding-left: .8rem;
+    font-size: 1.2rem;
+    
+    &:hover {
+        color: ${colors.accent}
+    }
+
+    @media (max-width: 380px){
+        padding-left: .4rem;
+    }
+`
+
+export const ShopCart = styled(FontAwesomeIcon)`
+
+    color: ${colors.textLogo};
+    cursor: pointer;
+    margin-left: 1.5rem;
+
+    &:hover {
+        color: ${colors.accent}
+    }
+
+    @media (max-width: 768px){
+        margin-left: .5rem;
     }
 `
