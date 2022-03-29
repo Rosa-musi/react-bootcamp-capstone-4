@@ -103,7 +103,23 @@ export const RenderProvider = (props) => {
     const [dataSearch, setDataSearch] = useState([{}])
     const [queryUrl, setQueryUrl] = useState("")
 
-  
+    // cart
+
+    
+    const [cartProducts, setCartProducts] = useState([])
+    const [productsCount, setProductsCount] = useState(0)
+
+    useEffect( () => {
+        if (cartProducts.length > 0){
+            let cuant = []
+            cartProducts.forEach(prod => cuant.push(prod.cuantity))
+            let total = cuant.reduce ((a, b) => a + b)
+            setProductsCount(total)
+
+        }
+
+    }, [cartProducts, setProductsCount])
+    console.log(productsCount)
 
     return (
         <renderContext.Provider value={{
@@ -126,7 +142,11 @@ export const RenderProvider = (props) => {
             dataSearch, 
             setDataSearch,
             queryUrl,
-            setQueryUrl
+            setQueryUrl,
+            cartProducts,
+            setCartProducts,
+            productsCount,
+            setProductsCount
         }}>
             {props.children}
         </renderContext.Provider>
