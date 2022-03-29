@@ -53,8 +53,6 @@ const Slider = () => {
                 navigation
                 slidesPerView={1}
                 style={{"--swiper-navigation-color": colors.light}}
-                onInit={(swiper) => console.log("Swiper initialized!", swiper)}
-                onReachEnd={() => console.log("Swiper end reached")}
             >
                 {
                     baners.map(baner => {

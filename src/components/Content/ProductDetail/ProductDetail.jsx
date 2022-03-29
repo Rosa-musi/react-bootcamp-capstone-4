@@ -26,14 +26,9 @@ const ProductDetail = () => {
 
 const {detail} = useContext(renderContext)
 
-
-
-
-console.log(detail)
-
   return (
     <ProdDetContainer>
-        <Text bold title list>{detail.data.name}</Text>
+        <Text bold title="true" list="true">{detail.data.name}</Text>
         <SwiperContainer>
           <Swiper
             id="main"
@@ -41,8 +36,6 @@ console.log(detail)
             spaceBetween={0}
             slidesPerView={1}
             style={{"--swiper-navigation-color": colors.textLogo}}
-            onInit={(swiper) => console.log("Swiper initialized!", swiper)}
-            onReachEnd={() => console.log("Swiper end reached")}
             >
                 {detail.data.images.map(imag => {
                     return(
@@ -62,7 +55,7 @@ console.log(detail)
         
         <BuyDiv>
             <InputDiv>
-                <Text bold list input>Items</Text>
+                <Text bold list="true" input>Items</Text>
                 <InputItems type="number"/>
             </InputDiv>
             <Button center>add to cart            
@@ -87,12 +80,12 @@ console.log(detail)
             <Text><Text bold as="span">Sku: </Text>{detail.data.sku}</Text>
             <Text><Text bold as="span">Category: </Text>{detail.data.category.slug}</Text>
             <Text><Text bold as="span">Items: </Text>{detail.data.stock}</Text>
-            <Text bold list as="span">Tags: </Text>
-            {detail.tags.map (tag => <Text list key={crypto.randomUUID()}>{tag}</Text>)}
+            <Text bold list="true" as="span">Tags: </Text>
+            {detail.tags.map (tag => <Text list="true" key={crypto.randomUUID()}>{tag}</Text>)}
         
 
             <Divider between></Divider>
-            <Text bold list> Description: </Text>
+            <Text bold list="true"> Description: </Text>
             <Text>{detail.data.description[0].text}</Text>
             
             <Divider between></Divider>
@@ -100,7 +93,7 @@ console.log(detail)
             <Table>
                 <Tr as="thead">
                     <Tr as="tr">
-                        <Tr name  as="th">spec</Tr>
+                        <Tr name="true"  as="th">spec</Tr>
                         <Tr  as="th">description</Tr>
                     </Tr>
                 </Tr>
@@ -108,7 +101,7 @@ console.log(detail)
                 {detail.data.specs.map(spc => {
                     return(
                         <Tr as="tr" key={crypto.randomUUID()}>
-                            <Tr td name as="td">{spc.spec_name}</Tr><Tr as="td">{spc.spec_value}</Tr>
+                            <Tr td name="true" as="td">{spc.spec_name}</Tr><Tr as="td">{spc.spec_value}</Tr>
                         </Tr>
                     )
                 })}

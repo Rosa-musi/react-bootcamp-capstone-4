@@ -6,16 +6,22 @@ import {
     ImgBanerContainer,
     TextDiv,
     Text,
+    SwiperContainer,
 } from './styledSlider'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {colors} from '../../../../utils/colors'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from "swiper";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay'
+
+
 
 const Slider = () => {
-    
-    const [baners, setBaners] = useState([{}])
-    const [selectedIndex, setSelectedIndex] = useState(0)
-    const [selectedImage, setSelectedImage] = useState(baners[0])
 
+    const [baners, setBaners] = useState([{}])
     const [data, isLoading, error] = useFetch(`&q=${encodeURIComponent(
         '[[at(document.type, "banner")]]'
       )}&lang=en-us&pageSize=5`)
@@ -37,65 +43,36 @@ const Slider = () => {
         setBaners(banersData)
       }, [data.results, isLoading])
 
-
-
-    const previous = () => {
-        const condition = selectedIndex > 0
-        const nextIndex = condition ? selectedIndex - 1 : baners.length - 1
-        setSelectedImage(baners[nextIndex])
-        setSelectedIndex(nextIndex)
-    }
-
-    const next = useCallback(() => {
-        const condition = selectedIndex < baners.length -1
-        const nextIndex = condition ? selectedIndex + 1 : 0
-        setSelectedImage(baners[nextIndex])
-        setSelectedIndex(nextIndex)
-    }, [baners, selectedIndex])
- 
-    useEffect(() => {
-        const intervalo = setInterval(() => {
-            next()
-        }, 6000)
-
-
-        return () => clearInterval(intervalo)  //to erase interval (unmount)
-
-    }, [selectedImage, selectedIndex, next]);  
-
     return (
         <SliderContainer>
-            <FontAwesomeIcon 
-                onClick={previous} 
-                icon="fa-solid fa-chevron-left" 
-                style={{
-                    cursor: "pointer",
-                    fontSize: "3rem",
-                    color: colors.textLogo,
-                  }} 
-            />
-             <ImgBanerContainer>
-                <CarouselImg 
-                    src={selectedImage.image} 
-                    alt="imágen" 
-                />
-                <TextDiv>
-                    <Text titl>{selectedImage.title}</Text>
-                    <Text description>{selectedImage.description}</Text>
-                </TextDiv>
-                
-            </ImgBanerContainer> 
-            
-            <FontAwesomeIcon 
-                onClick={next} 
-                icon="fa-solid fa-chevron-right" 
-                style={{
-                    cursor: "pointer",
-                    fontSize: "3rem",
-                    color: colors.textLogo,
-                  }} 
-            />
-  
+            <SwiperContainer>
+            <Swiper
+                modules={[Navigation,  Autoplay]}
+                autoplay={{delay: 6000}}
+                navigation
+                slidesPerView={1}
+                style={{"--swiper-navigation-color": colors.light}}
+            >
+                {
+                    baners.map(baner => {
+                       return(
+                        <SwiperSlide key={crypto.randomUUID()}>
+                            <ImgBanerContainer>
+                                <CarouselImg 
+                                    src={baner.image} 
+                                    alt="imágen" 
+                                />
+                                <TextDiv>
+                                    <Text titl>{baner.title}</Text>
+                                    <Text description>{baner.description}</Text>
+                                </TextDiv>
+                            </ImgBanerContainer>  
+                        </SwiperSlide>
+                        )
+                    })
+                }
+            </Swiper>
+            </SwiperContainer>
         </SliderContainer>
     )
 }

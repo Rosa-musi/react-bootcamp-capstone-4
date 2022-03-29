@@ -29,8 +29,6 @@ const ProductList = () => {
   const [indexOfFirstProd, setIndexOfFirstProd] = useState(0)
   const [currentProds, setCurrentProds] = useState([])
 
- 
-  console.log(slugs)
   useEffect( () => {
     setSlugs(filters.join("_"))
     slugs != "" ? setSearchParams({search: slugs}) : setSearchParams();

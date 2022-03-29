@@ -10,7 +10,6 @@ export const useFetch = (endpoint) => {
   const [ref, refIsLoading] = useRef()
 
   useEffect(() => {
-    console.log(ref)
     if(!ref || refIsLoading) {
       return () => {};
     }
