@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom'
 import { renderContext } from '../../../context/renderContext'
 import {
     Text,
-    Table,
-    Tr,
-    InputItems,
     CartContainer,
     ProductContainer,
     ProdImg,
@@ -36,7 +33,7 @@ const Cart = () => {
         setCartProducts(newCartProducts)  */
         alert("remove this from the cart")
     }
-    console.log(cartProducts)
+
   return (
     <CartContainer>
         <ProductsContainer>

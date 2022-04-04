@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { renderContext } from '../../../context/renderContext'
 import Button from '../../Common/Button/Button'
@@ -25,7 +25,7 @@ SwiperCore.use([Navigation, Controller, Thumbs]);
 
 const ProductDetail = () => {
 
-    const {detail, cartProducts, setCartProducts, setProductsCount, productsCount} = useContext(renderContext)
+    const {detail, cartProducts, setCartProducts } = useContext(renderContext)
     const [valueInput, setValueInput] = useState("")
 
     const handleChange = (e) => {
@@ -41,9 +41,6 @@ const ProductDetail = () => {
         }
         setValueInput(0)
     }
-
-    console.log(detail)
-
  
   return (
     <ProdDetContainer>

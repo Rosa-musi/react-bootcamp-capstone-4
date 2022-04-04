@@ -34,7 +34,8 @@ const Header = () => {
         category: product.data.category.slug,
         description: product.data.short_description,
         price: product.data.price,
-        id: product.id
+        id: product.id,
+        product
         })
     })
 

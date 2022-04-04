@@ -8,7 +8,6 @@ import {
   ProductsContainer,
   ProductContainer,
   TotalPayContainer
-
 } from './styledCheckout'
 import Button from '../../Common/Button/Button'
 import { renderContext } from '../../../context/renderContext'
@@ -16,7 +15,7 @@ import { renderContext } from '../../../context/renderContext'
 
 const Checkout = () => {
 
-  const { cartProducts, setCartProducts, total } = useContext(renderContext)
+  const { cartProducts, total } = useContext(renderContext)
 
   return (
     <CartContainer>

@@ -39,7 +39,6 @@ const FeaturedProd = () => {
             })
         setFeatured(featuredData)
     }, [data.results, isLoading])
-    console.log(featured)
 
     useEffect(() => {
        if (featured.length <= 16){

@@ -13,7 +13,7 @@ import {
 
 function Search() {
 
-    const { dataSearch,  queryUrl, setQueryUrl} = useContext(renderContext)
+    const { dataSearch,  queryUrl, handleBuy } = useContext(renderContext)
     const [useParams, setUseParams] = useSearchParams()
     const [totalPages, setTotalPages] = useState(Math.ceil(dataSearch.length / 12))
     const [currentPage, setCurrentPage] = useState(1)
@@ -23,7 +23,7 @@ function Search() {
     const [indexOfLastPost, setIndexOfLastPost] = useState(currentPage * prodPerPage)
     const [indexOfFirstPost, setIndexOfFirstPost] = useState(0)
     const [currentPosts, setCurrentPosts] = useState([])
-   
+
     useEffect(() => {
         setIndexOfFirstPost(indexOfLastPost - prodPerPage)
         setCurrentPosts(dataSearch.slice(indexOfFirstPost, indexOfLastPost))
@@ -51,6 +51,8 @@ function Search() {
      setTotalPages(Math.ceil(dataSearch.length / 12))
    }, [currentPage, prodPerPage, totalPages, dataSearch.length, indexOfFirstPost])
  
+   console.log(currentPosts)
+
   return (
       <ListDiv>
         <ProdListTitle>Search List</ProdListTitle>
@@ -59,7 +61,7 @@ function Search() {
                 <ProdListTitle>Sorry, we couldn't find that product</ProdListTitle> :
                 currentPosts.map(prod =>{
                     return(
-                        <Card key={crypto.randomUUID()} noDetail="hide" {...prod} />
+                        <Card key={crypto.randomUUID()} noDetail="hide" buy={() => handleBuy(prod.product)} {...prod} />
                     )
                 })
             }

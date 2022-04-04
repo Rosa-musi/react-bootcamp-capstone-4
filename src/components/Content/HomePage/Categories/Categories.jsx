@@ -12,7 +12,7 @@ import { renderContext } from '../../../../context/renderContext'
 
 const Categories = () => {
 
-    const {categories, setCategories, handleSelected, slugs} = useContext(renderContext)
+    const {categories, handleSelected} = useContext(renderContext)
 
 
 

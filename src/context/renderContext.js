@@ -58,7 +58,6 @@ export const RenderProvider = (props) => {
     // product detail
     const [detail, setDetail] = useState({})
 
-    // hacer fetch a API de todos los productos
     const [dataProd, isLoadingProd, errorProd] = useFetch('&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&lang=en-us&pageSize=30')
     const [products, setProducts] = useState([{}])
     const [newProducts, setNewProducts] = useState([{}])
@@ -129,7 +128,6 @@ export const RenderProvider = (props) => {
         }
 
     }, [cartProducts, setProductsCount,])
-    console.log(productsCount)
 
     const handleBuy = (prod) => {
         setCartProducts([...cartProducts, {product: prod, cuantity: 1}])
