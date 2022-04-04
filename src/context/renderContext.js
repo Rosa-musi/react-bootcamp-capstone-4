@@ -58,7 +58,6 @@ export const RenderProvider = (props) => {
     // product detail
     const [detail, setDetail] = useState({})
 
-    // hacer fetch a API de todos los productos
     const [dataProd, isLoadingProd, errorProd] = useFetch('&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&lang=en-us&pageSize=30')
     const [products, setProducts] = useState([{}])
     const [newProducts, setNewProducts] = useState([{}])
@@ -72,7 +71,8 @@ export const RenderProvider = (props) => {
             image: product.data.mainimage.url,
             category: product.data.category.slug,
             price: product.data.price,
-            id: product.id
+            id: product.id,
+            product: product
             })
         })
 
@@ -103,7 +103,36 @@ export const RenderProvider = (props) => {
     const [dataSearch, setDataSearch] = useState([{}])
     const [queryUrl, setQueryUrl] = useState("")
 
-  
+    // cart
+
+    
+    const [cartProducts, setCartProducts] = useState([])
+    const [productsCount, setProductsCount] = useState(0)
+    const [total, setTotal] = useState(0)
+
+    useEffect( () => {
+        if (cartProducts.length > 0){
+            let cuant = []
+            let totalPerProduct= []
+            cartProducts.forEach(prod => {
+                cuant.push(prod.cuantity)
+                totalPerProduct.push(prod.product.data.price * prod.cuantity)
+            })
+            let totalItem = cuant.reduce ((a, b) => a + b)
+            let totalPrice = totalPerProduct.reduce ((a, b) => a + b)
+            setProductsCount(totalItem)
+            setTotal(totalPrice)
+
+        } else if (cartProducts.length === 0) {
+            setProductsCount(0)
+        }
+
+    }, [cartProducts, setProductsCount,])
+
+    const handleBuy = (prod) => {
+        setCartProducts([...cartProducts, {product: prod, cuantity: 1}])
+
+    }
 
     return (
         <renderContext.Provider value={{
@@ -126,7 +155,14 @@ export const RenderProvider = (props) => {
             dataSearch, 
             setDataSearch,
             queryUrl,
-            setQueryUrl
+            setQueryUrl,
+            cartProducts,
+            setCartProducts,
+            productsCount,
+            setProductsCount,
+            handleBuy,
+            total,
+            setTotal
         }}>
             {props.children}
         </renderContext.Provider>

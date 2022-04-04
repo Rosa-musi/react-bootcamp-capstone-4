@@ -1,4 +1,5 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { renderContext } from '../../../context/renderContext'
 import Button from '../../Common/Button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,8 +25,23 @@ SwiperCore.use([Navigation, Controller, Thumbs]);
 
 const ProductDetail = () => {
 
-const {detail} = useContext(renderContext)
+    const {detail, cartProducts, setCartProducts } = useContext(renderContext)
+    const [valueInput, setValueInput] = useState("")
 
+    const handleChange = (e) => {
+        setValueInput(e.target.value)
+    }
+
+    const handleBuy = () => {
+        if(valueInput <= 0){
+            alert("please set a quantity of products")
+        } else if (valueInput <= detail.data.stock){
+
+            setCartProducts([...cartProducts, {product: detail, cuantity: parseInt(valueInput)}])
+        }
+        setValueInput(0)
+    }
+ 
   return (
     <ProdDetContainer>
         <Text bold title="true" list="true">{detail.data.name}</Text>
@@ -56,19 +72,29 @@ const {detail} = useContext(renderContext)
         <BuyDiv>
             <InputDiv>
                 <Text bold list="true" input>Items</Text>
-                <InputItems type="number"/>
-            </InputDiv>
-            <Button center>add to cart            
-                <FontAwesomeIcon 
-                    icon="shopping-cart" 
-                    style={{
-                    color: colors.textLogo, 
-                    marginLeft: "1rem",
-                    cursor: "pointer",
-                    }}
+                <InputItems 
+                    type="number"
+                    onChange={handleChange}
+                    value={valueInput}
                 />
-            </Button>
-
+            </InputDiv>
+            {
+                valueInput > detail.data.stock ?
+                <Text>we only have {detail.data.stock} products in stock</Text> :
+                <Link to="/cart"><Button 
+                    center
+                    onClick={handleBuy}
+                >add to cart            
+                    <FontAwesomeIcon 
+                        icon="shopping-cart" 
+                        style={{
+                        color: colors.textLogo, 
+                        marginLeft: "1rem",
+                        cursor: "pointer",
+                        }}
+                    />
+                </Button></Link>
+            }
             
         </BuyDiv>
 

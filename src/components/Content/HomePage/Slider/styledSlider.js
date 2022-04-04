@@ -34,6 +34,7 @@ export const SwiperContainer = styled.div`
     @media (max-width: 768px){
         width: 100%;
         margin-bottom: 1rem;
+        height: fit-content;
     }
 `
 export const CarouselImg = styled.img`

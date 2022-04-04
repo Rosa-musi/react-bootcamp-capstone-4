@@ -13,12 +13,13 @@ import {
   SearchInput,
   SearchDiv,
   StyledSearch,
-  ShopCart
+  ShopCart,
+  Text
 } from './styledHeader'
 
 const Header = () => {
 
-  const {search, setSearch, dataSearch, setDataSearch, setQueryUrl} = useContext(renderContext)
+  const {search, setSearch, setDataSearch, setQueryUrl, productsCount } = useContext(renderContext)
 
   const [data, isLoading, error] = useFetch(`&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&q=%5B%5Bfulltext(document%2C%20%22${search}%22)%5D%5D&lang=en-us&pageSize=20`)
     
@@ -33,7 +34,8 @@ const Header = () => {
         category: product.data.category.slug,
         description: product.data.short_description,
         price: product.data.price,
-        id: product.id
+        id: product.id,
+        product
         })
     })
 
@@ -62,7 +64,12 @@ const Header = () => {
               />
               <Link to="/search" onClick={handleSetData}><StyledSearch  icon="fa-solid fa-magnifying-glass" /></Link>
             </SearchDiv>
-            <ShopCart icon="shopping-cart"/>
+            <Link to="/cart">
+              <SearchDiv shop>
+                <ShopCart icon="shopping-cart"/>
+                <Text>{productsCount > 0 && productsCount}</Text>
+              </SearchDiv>
+            </Link>
         </HeaderSearchDiv>
     </HeaderContainer>
   )

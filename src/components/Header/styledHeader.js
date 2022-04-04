@@ -28,6 +28,9 @@ export const HeaderLogoDiv = styled.div`
         margin-left: 1rem;
         margin-bottom: 0;
     }
+    @media (max-width: 380px){
+        margin-left: .5rem;
+    }
 
 `
 
@@ -41,7 +44,7 @@ export const LogoText = styled.h1`
     font-size: 2.3rem;
 
     color: ${colors.textLogo};
-    @media (max-width: 380px){
+    @media (max-width: 768px){
         display: none;
     }
 
@@ -56,13 +59,16 @@ export const HeaderSearchDiv = styled.div`
     @media (max-width: 768px){
         margin-right: 1.5rem;
     }
+    @media (max-width: 380px){
+        margin-right: .5rem;
+    }
 `
 export const SearchDiv = styled.div`
     display: flex;
     align-items: center;
     width: fit-content;
     height: fit-content;
-    margin-right: 3rem;
+    margin-right: ${props => props.shop ? "0" : "2.5rem"};
     @media (max-width: 768px){
         margin-right: 1rem;
     }
@@ -91,7 +97,7 @@ export const ShopCart = styled(FontAwesomeIcon)`
 
     color: ${colors.textLogo};
     cursor: pointer;
-    margin-left: 1.5rem;
+
 
     &:hover {
         color: ${colors.accent}
@@ -99,5 +105,17 @@ export const ShopCart = styled(FontAwesomeIcon)`
 
     @media (max-width: 768px){
         margin-left: .5rem;
+    }
+`
+
+export const Text = styled.p`
+    font-size: 1.2rem;
+    color: ${colors.textLogo};
+    font-weight: bolder;
+    margin-left: .5rem;
+    
+    
+    @media (max-width: 380px){
+        font-size: ${props => props.title ? "1.6rem" : "1rem"};
     }
 `

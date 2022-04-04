@@ -7,7 +7,6 @@ import {
 } from './styledHomePage'
 import { renderContext } from '../../../context/renderContext'
 import { useFeaturedBanners } from '../../../utils/hooks/useFeaturedBanners'
-import { useLatestAPI } from '../../../utils/hooks/useLatestAPI'
 
 
 const HomePage = () => {

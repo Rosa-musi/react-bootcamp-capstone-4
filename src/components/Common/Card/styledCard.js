@@ -87,20 +87,3 @@ export const LinkRouter = styled(Link).attrs(props => ({
 
 
 
-/* export const StyledIcon = styled(FontAwesomeIcon).attrs(props => ({
-    className: props.className,
-}))`
-
-    &.hide{
-        visibility: hidden;
-    }
-
-    color: ${colors.textLogo};
-    cursor: pointer;
-    font-size: 3rem;
-
-    @media (max-width: 380px){
-        font-size: 2.5rem;
-
-    }
-` */

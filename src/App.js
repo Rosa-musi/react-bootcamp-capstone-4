@@ -5,6 +5,8 @@ import Home from './components/Content/HomePage/HomePage'
 import ProductList from './components/Content/ProductList/ProductList'
 import ProductDetail from './components/Content/ProductDetail/ProductDetail';
 import Search from './components/Content/Search/Search'
+import Cart from './components/Content/Cart/Cart'
+import Checkout from './components/Content/Checkout/Checkout'
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Footer from './components/Footer/Footer'
 import GlobalStyle from './globalStyles'
@@ -35,6 +37,8 @@ function App() {
             <Route path="/products" element={<ProductList/>}/> 
             <Route exact path="/productDetail/:id" element={<ProductDetail/>}/>
             <Route exact path= "/search" element={<Search/>}/>
+            <Route exact path="/cart" element={<Cart/>} />
+            <Route exact path= "/checkout" element={<Checkout/>}/>
             <Route exact path="*" element={<ErrorPage />} />
           </Routes> 
           <Footer/>
