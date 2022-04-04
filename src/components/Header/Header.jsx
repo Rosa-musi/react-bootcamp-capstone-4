@@ -63,11 +63,12 @@ const Header = () => {
               />
               <Link to="/search" onClick={handleSetData}><StyledSearch  icon="fa-solid fa-magnifying-glass" /></Link>
             </SearchDiv>
-            <SearchDiv shop>
-              <ShopCart icon="shopping-cart"/>
-              <Text>{productsCount > 0 && productsCount}</Text>
-            </SearchDiv>
-            
+            <Link to="/cart">
+              <SearchDiv shop>
+                <ShopCart icon="shopping-cart"/>
+                <Text>{productsCount > 0 && productsCount}</Text>
+              </SearchDiv>
+            </Link>
         </HeaderSearchDiv>
     </HeaderContainer>
   )

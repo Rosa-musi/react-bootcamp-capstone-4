@@ -1,4 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import { renderContext } from '../../../context/renderContext'
 import Button from '../../Common/Button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -41,7 +42,7 @@ const ProductDetail = () => {
         setValueInput(0)
     }
 
-    
+    console.log(detail)
 
  
   return (
@@ -83,7 +84,7 @@ const ProductDetail = () => {
             {
                 valueInput > detail.data.stock ?
                 <Text>we only have {detail.data.stock} products in stock</Text> :
-                <Button 
+                <Link to="/cart"><Button 
                     center
                     onClick={handleBuy}
                 >add to cart            
@@ -95,7 +96,7 @@ const ProductDetail = () => {
                         cursor: "pointer",
                         }}
                     />
-                </Button>
+                </Button></Link>
             }
             
         </BuyDiv>

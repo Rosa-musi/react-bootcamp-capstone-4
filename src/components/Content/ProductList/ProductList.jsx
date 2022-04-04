@@ -19,7 +19,7 @@ import { renderContext } from '../../../context/renderContext'
 const ProductList = () => {
 
   const [searchParams, setSearchParams] = useSearchParams()
-  const {newProducts, dataProd, setDetail, slugs, setSlugs, filters} = useContext(renderContext)
+  const {newProducts, dataProd, setDetail, slugs, setSlugs, filters, handleBuy} = useContext(renderContext)
   const [totalPages, setTotalPages] = useState(Math.ceil(newProducts.length / 12))
   const [currentPage, setCurrentPage] = useState(1)
   const [prodPerPage, setProdPerPage] = useState(12)
@@ -78,7 +78,7 @@ const ProductList = () => {
                 <ProdListTitle>There are no products in those categories</ProdListTitle> :
                 currentProds.map(product => {
                   return(
-                    <Card key={crypto.randomUUID()}  handleDetail={() => handleDetail(product)} {...product}/>
+                    <Card key={crypto.randomUUID()} buy={() => handleBuy(product.product)} handleDetail={() => handleDetail(product)} {...product}/>
                   )
                 })
               }

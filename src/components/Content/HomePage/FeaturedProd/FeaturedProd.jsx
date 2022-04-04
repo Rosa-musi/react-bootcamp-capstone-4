@@ -15,7 +15,7 @@ const FeaturedProd = () => {
     const [featured, setFeatured] = useState([{}])
     const [maxResults, setMaxResults] = useState([])
     const [data, isLoading, error] = useFetch(`&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&q=%5B%5Bat(document.tags%2C%20%5B%22Featured%22%5D)%5D%5D&lang=en-us&pageSize=16`)
-    const {setDetail} = useContext(renderContext)
+    const {setDetail, handleBuy} = useContext(renderContext)
 
     const handleDetail = (detailProd) => {
         data.results.forEach(obj => {
@@ -26,18 +26,20 @@ const FeaturedProd = () => {
    }
 
     useEffect(() => {
-        const featuredData = []
+        let featuredData = []
             !isLoading && data.results.forEach(featured => {
                 featuredData.push({
                 name: featured.data.name,
                 image: featured.data.mainimage.url,
                 category: featured.data.category.slug,
                 price: featured.data.price,
-                id: featured.id
+                id: featured.id,
+                product: featured
                 })
             })
         setFeatured(featuredData)
     }, [data.results, isLoading])
+    console.log(featured)
 
     useEffect(() => {
        if (featured.length <= 16){
@@ -58,7 +60,7 @@ const FeaturedProd = () => {
             {
                 maxResults.map(product => {
                     return ( 
-                        <Card key={crypto.randomUUID()} handleDetail={() => handleDetail(product)} {...product}/>
+                        <Card key={crypto.randomUUID()} buy={() => handleBuy(product.product)} handleDetail={() => handleDetail(product)} {...product}/>
                     )
                 })
             }

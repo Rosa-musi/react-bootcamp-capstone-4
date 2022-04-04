@@ -72,7 +72,8 @@ export const RenderProvider = (props) => {
             image: product.data.mainimage.url,
             category: product.data.category.slug,
             price: product.data.price,
-            id: product.id
+            id: product.id,
+            product: product
             })
         })
 
@@ -108,18 +109,32 @@ export const RenderProvider = (props) => {
     
     const [cartProducts, setCartProducts] = useState([])
     const [productsCount, setProductsCount] = useState(0)
+    const [total, setTotal] = useState(0)
 
     useEffect( () => {
         if (cartProducts.length > 0){
             let cuant = []
-            cartProducts.forEach(prod => cuant.push(prod.cuantity))
-            let total = cuant.reduce ((a, b) => a + b)
-            setProductsCount(total)
+            let totalPerProduct= []
+            cartProducts.forEach(prod => {
+                cuant.push(prod.cuantity)
+                totalPerProduct.push(prod.product.data.price * prod.cuantity)
+            })
+            let totalItem = cuant.reduce ((a, b) => a + b)
+            let totalPrice = totalPerProduct.reduce ((a, b) => a + b)
+            setProductsCount(totalItem)
+            setTotal(totalPrice)
 
+        } else if (cartProducts.length === 0) {
+            setProductsCount(0)
         }
 
-    }, [cartProducts, setProductsCount])
+    }, [cartProducts, setProductsCount,])
     console.log(productsCount)
+
+    const handleBuy = (prod) => {
+        setCartProducts([...cartProducts, {product: prod, cuantity: 1}])
+
+    }
 
     return (
         <renderContext.Provider value={{
@@ -146,7 +161,10 @@ export const RenderProvider = (props) => {
             cartProducts,
             setCartProducts,
             productsCount,
-            setProductsCount
+            setProductsCount,
+            handleBuy,
+            total,
+            setTotal
         }}>
             {props.children}
         </renderContext.Provider>
