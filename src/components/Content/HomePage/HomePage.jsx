@@ -6,15 +6,10 @@ import {
   SliderContainer,
 } from './styledHomePage'
 import { renderContext } from '../../../context/renderContext'
-import { useFeaturedBanners } from '../../../utils/hooks/useFeaturedBanners'
-
 
 const HomePage = () => {
-    const {data: dat, isLoadong: isLoading} = useFeaturedBanners()
-    const {filters, setFilters, categories, setCategories} = useContext(renderContext)
 
-   
-
+    const { setFilters, categories, setCategories} = useContext(renderContext)
 
     useEffect(() => {
       setFilters([])
@@ -25,16 +20,12 @@ const HomePage = () => {
       setCategories(newCategories)
     }, [categories, setCategories, setFilters])
 
-    
-  
-
   return (
     <SliderContainer>
         <Slider/>
         <Categories/>
         <FeaturedProd/>
     </SliderContainer>
-    
   )
 }
 

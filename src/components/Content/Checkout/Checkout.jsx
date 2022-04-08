@@ -20,13 +20,13 @@ const Checkout = () => {
   return (
     <CartContainer>
         <CustomerForm>
-          <Text start bold="true">name</Text>
+          <Text start ="true" bold="true">name</Text>
           <InputForm type="text"/>
-          <Text start bold="true">email</Text>
+          <Text start ="true" bold="true">email</Text>
           <InputForm type="text"/>
-          <Text start bold="true">post/zip code</Text>
+          <Text start ="true" bold="true">post/zip code</Text>
           <InputForm type="text"/>
-          <Text start bold="true">order notes</Text>
+          <Text star ="true"t bold="true">order notes</Text>
           <InputForm hei type="texarea" rows="10"/>
         </CustomerForm>
         <ProductsContainer>

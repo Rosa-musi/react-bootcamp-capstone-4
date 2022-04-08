@@ -19,7 +19,6 @@ function Search() {
     const [currentPage, setCurrentPage] = useState(1)
     const [prodPerPage, setProdPerPage] = useState(12)
   
-    // Get Current products
     const [indexOfLastPost, setIndexOfLastPost] = useState(currentPage * prodPerPage)
     const [indexOfFirstPost, setIndexOfFirstPost] = useState(0)
     const [currentPosts, setCurrentPosts] = useState([])
@@ -50,8 +49,6 @@ function Search() {
      setIndexOfLastPost(currentPage * prodPerPage)
      setTotalPages(Math.ceil(dataSearch.length / 12))
    }, [currentPage, prodPerPage, totalPages, dataSearch.length, indexOfFirstPost])
- 
-   console.log(currentPosts)
 
   return (
       <ListDiv>

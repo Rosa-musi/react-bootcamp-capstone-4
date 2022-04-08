@@ -1,6 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
 import { useSearchParams } from 'react-router-dom'
-
 import SideBar from './SideBar/SideBar'
 import Card from '../../Common/Card/Card'
 import {
@@ -12,9 +11,7 @@ import {
     Text,
     StyledIcon,
 } from './styledProductList'
-
 import { renderContext } from '../../../context/renderContext'
-
 
 const ProductList = () => {
 
@@ -23,8 +20,6 @@ const ProductList = () => {
   const [totalPages, setTotalPages] = useState(Math.ceil(newProducts.length / 12))
   const [currentPage, setCurrentPage] = useState(1)
   const [prodPerPage, setProdPerPage] = useState(12)
-
-  // Get Current products
   const [indexOfLastProd, setIndexOfLastProd] = useState(currentPage * prodPerPage)
   const [indexOfFirstProd, setIndexOfFirstProd] = useState(0)
   const [currentProds, setCurrentProds] = useState([])
