@@ -9,6 +9,7 @@ import Cart from './components/Content/Cart/Cart'
 import Checkout from './components/Content/Checkout/Checkout'
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Footer from './components/Footer/Footer'
+import { routes } from './routes/routes'
 import GlobalStyle from './globalStyles'
 import { renderContext } from './context/renderContext'
 import {
@@ -32,14 +33,9 @@ function App() {
         <MainContainer>
           <Header/>
           <Routes>
-            <Route exact path="/" element={<Home/>}/>   
-            <Route exact path="/home" element={<Home/>}/>
-            <Route path="/products" element={<ProductList/>}/> 
-            <Route exact path="/productDetail/:id" element={<ProductDetail/>}/>
-            <Route exact path= "/search" element={<Search/>}/>
-            <Route exact path="/cart" element={<Cart/>} />
-            <Route exact path= "/checkout" element={<Checkout/>}/>
-            <Route exact path="*" element={<ErrorPage />} />
+            {routes.map(({ path, element: Component }, index) => {
+              return <Route key={index} path={path} element={<Component/>} />
+            })}
           </Routes> 
           <Footer/>
         </MainContainer>

@@ -48,10 +48,6 @@ const FeaturedProd = () => {
         }
     }, [featured]);
 
-   
-   
-
-
   return (
     <FeaturedContainer>
         <FeaturedTitle>Featured Products</FeaturedTitle>

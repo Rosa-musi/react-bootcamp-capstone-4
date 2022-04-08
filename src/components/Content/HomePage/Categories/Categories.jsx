@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import {
     CategoriesContainer,
@@ -13,9 +13,6 @@ import { renderContext } from '../../../../context/renderContext'
 const Categories = () => {
 
     const {categories, handleSelected} = useContext(renderContext)
-
-
-
 
     return (
         <CategoriesContainer>

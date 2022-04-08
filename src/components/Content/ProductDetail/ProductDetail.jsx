@@ -19,14 +19,14 @@ import {
     InputItems,
 } from './styledProductDetail'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Controller, Thumbs } from "swiper";
+import SwiperCore, { Navigation, Controller, Thumbs } from "swiper";
 import 'swiper/css/bundle';
 SwiperCore.use([Navigation, Controller, Thumbs]);
 
 const ProductDetail = () => {
 
     const {detail, cartProducts, setCartProducts } = useContext(renderContext)
-    const [valueInput, setValueInput] = useState("")
+    const [valueInput, setValueInput] = useState(1)
 
     const handleChange = (e) => {
         setValueInput(e.target.value)
@@ -74,6 +74,7 @@ const ProductDetail = () => {
                 <Text bold list="true" input>Items</Text>
                 <InputItems 
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={valueInput}
                 />
