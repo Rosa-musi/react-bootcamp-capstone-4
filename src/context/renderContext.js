@@ -1,14 +1,5 @@
 import React, {createContext, useState, useEffect} from 'react'
 import { useFetch } from '../utils/hooks/useFetch'
-import ProductsJson from '../mocks/en-us/products.json'
-
-
-const prueba = []
-ProductsJson.results.forEach(product => {
-    prueba.push(product)
-})
-
-
 
 export const renderContext = createContext()
 
@@ -110,6 +101,15 @@ export const RenderProvider = (props) => {
     const [productsCount, setProductsCount] = useState(0)
     const [total, setTotal] = useState(0)
 
+    useEffect(() => {
+        const cartLS = JSON.parse(localStorage.getItem('shoppingCart'));
+        cartLS ? setCartProducts(cartLS) : setCartProducts([])
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem("shoppingCart", JSON.stringify(cartProducts))
+    }, [cartProducts])
+
     useEffect( () => {
         if (cartProducts.length > 0){
             let cuant = []
@@ -125,13 +125,16 @@ export const RenderProvider = (props) => {
 
         } else if (cartProducts.length === 0) {
             setProductsCount(0)
+            setTotal(0)
         }
-
-    }, [cartProducts, setProductsCount,])
+    }, [cartProducts, setProductsCount, total, productsCount ])
 
     const handleBuy = (prod) => {
-        setCartProducts([...cartProducts, {product: prod, cuantity: 1}])
-
+        if(cartProducts.some(prods => prods.product.id === prod.id)){
+            alert("this product is already in the shopping cart")
+        }else{
+            setCartProducts([...cartProducts, {product: prod, cuantity: 1}])
+        }
     }
 
     return (

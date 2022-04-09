@@ -32,12 +32,16 @@ const ProductDetail = () => {
         setValueInput(e.target.value)
     }
 
+    console.log(cartProducts)
     const handleBuy = () => {
         if(valueInput <= 0){
             alert("please set a quantity of products")
         } else if (valueInput <= detail.data.stock){
-
-            setCartProducts([...cartProducts, {product: detail, cuantity: parseInt(valueInput)}])
+            if(cartProducts.some(prod => prod.product.id === detail.id)){
+                alert("this product is already in the cart")
+            } else {
+                setCartProducts([...cartProducts, {product: detail, cuantity: parseInt(valueInput)}])
+            }
         }
         setValueInput(0)
     }
