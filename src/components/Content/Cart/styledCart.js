@@ -19,6 +19,12 @@ export const Text = styled.p`
         font-size: ${props => props.title ? "1.6rem" : "1rem"};
     }
 `
+export const CuantityItems = styled.p`
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-weight: bold;
+`
+
 export const ProductsContainer = styled.div`
     display: flex;
     align-items: center;

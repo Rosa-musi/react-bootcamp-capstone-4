@@ -8,7 +8,8 @@ import {
     ProdImg,
     ProductsContainer,
     CounterContainer,
-    TotalPayContainer
+    TotalPayContainer,
+    CuantityItems
 } from './styledCart'
 import Button from '../../Common/Button/Button'
 
@@ -17,23 +18,31 @@ const Cart = () => {
 
     const { cartProducts, setCartProducts, total } = useContext(renderContext)
    
-    const handleCuantity = (e) => {
-        alert("change cuatity")
-    }
-
-
-    const handleRemove = (index) => {
-     
-/*          const newCartProducts = cartProducts
-         newCartProducts.forEach((prod, i) => {
+    const handleLes = (item, operator, index ) => {
+       
+        const newCartProducts = cartProducts.map((prod, i) => {
              if (i === index) {
-                 newCartProducts.splice(index, 1)
+                console.log(prod)
+                 if(operator === "-"){
+                    prod.cuantity = item.cuantity - 1
+                 } else if (operator === "+"){
+                    prod.cuantity = item.cuantity + 1
+                 }
              }
+             return prod
          })
-        setCartProducts(newCartProducts)  */
-        alert("remove this from the cart")
+        setCartProducts(newCartProducts)
     }
-
+    const handleRemove = (item, index) => {
+        let result = []
+        cartProducts.map( (prod, i) => {
+            if(prod.product.id !== item.product.id){
+                result.push(prod)
+            }
+            return prod
+        })
+        setCartProducts(result)
+    }
   return (
     <CartContainer>
         <ProductsContainer>
@@ -46,12 +55,20 @@ const Cart = () => {
                             <Text>{obj.product.data.name}</Text>
                             <Text>${obj.product.data.price}</Text>
                             <CounterContainer>
-                                <Text onClick={handleCuantity}>-</Text><Text margin>{obj.cuantity}</Text><Text onClick={handleCuantity}>+</Text>
+                                <CuantityItems 
+                                    onClick={() => handleLes(obj, "-", i)} 
+                                    style={{display: obj.cuantity === 1 && "none"}}
+                                >-</CuantityItems>
+                                <Text margin>{obj.cuantity}</Text>
+                                <CuantityItems 
+                                    style={{display: obj.product.data.stock === obj.cuantity && "none"}}
+                                    onClick={() => handleLes(obj, "+", i)}
+                                >+</CuantityItems>
                             </CounterContainer>
-                            <Button onClick={() =>handleRemove(i)}>Remove</Button>
+                            <Button onClick={() =>handleRemove(obj, i)}>Remove</Button>
                             <Text marTop>${obj.product.data.price * obj.cuantity}</Text>
                         </ProductContainer>
-                    )
+                    ) 
                 })
                 :
                 <Text>you don't have items in the shopping cart</Text>
